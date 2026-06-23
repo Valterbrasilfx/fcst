@@ -1,289 +1,1638 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulado de Alta Performance - Arena OAB/Faculdade</title>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        .navbar {
-            background-color: #1a1a1a;
-            border-bottom: 3px solid #d32f2f;
-            padding: 15px 20px;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            display: block;
-        }
-        .nav-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: space-between;
-        }
-        .nav-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffffff;
-            display: inline-block;
-        }
-        .scoreboard {
-            float: right;
-            background: #242424;
-            padding: 5px 15px;
-            border-radius: 4px;
-            border: 1px solid #d32f2f;
-            font-weight: bold;
-            font-size: 15px;
-        }
-        .score-green { color: #4caf50; margin-right: 15px; }
-        .score-red { color: #f44336; }
-        
-        .main-container {
-            max-width: 900px;
-            margin: 100px auto 50px auto;
-            padding: 0 20px;
-        }
-        
-        .header-banner {
-            background: linear-gradient(135deg, #1e1e1e 0%, #2c0e0e 100%);
-            border: 1px solid #333;
-            border-left: 6px solid #d32f2f;
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-        .header-banner h1 {
-            margin: 0;
-            font-size: 26px;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .header-banner p {
-            margin: 10px 0 0 0;
-            color: #b0b0b0;
-            font-size: 15px;
-        }
-        
-        .card {
-            background: #1e1e1e;
-            border: 1px solid #2d2d2d;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .q-num {
-            font-size: 13px;
-            font-weight: bold;
-            background: #d32f2f;
-            color: #ffffff;
-            padding: 3px 8px;
-            border-radius: 3px;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-        .q-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-        .options-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .option-item {
-            background: #262626;
-            border: 1px solid #3a3a3a;
-            border-radius: 6px;
-            padding: 14px 18px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-size: 15px;
-            color: #e0e0e0;
-            transition: all 0.2s ease;
-        }
-        .option-item:hover:not(.disabled) {
-            background: #323232;
-            border-color: #555;
-            color: #ffffff;
-        }
-        .option-item.disabled {
-            cursor: not-allowed;
-        }
-        
-        /* Interactive States */
-        .option-item.correct {
-            background-color: #1b5e20 !important;
-            border-color: #4caf50 !important;
-            color: #ffffff !important;
-            font-weight: bold;
-        }
-        .option-item.wrong {
-            background-color: #b71c1c !important;
-            border-color: #f44336 !important;
-            color: #ffffff !important;
-        }
-        .option-item.correct-highlight {
-            border: 2px dashed #4caf50 !important;
-            background-color: #143a16 !important;
-        }
-        
-        .explanation-box {
-            display: none;
-            margin-top: 20px;
-            padding: 18px;
-            border-radius: 6px;
-            background: #252525;
-            border-left: 4px solid #d32f2f;
-            font-size: 14.5px;
-            color: #e0e0e0;
-        }
-        .exp-header {
-            font-weight: bold;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-        }
-        .exp-header.correct-title { color: #4caf50; }
-        .exp-header.wrong-title { color: #f44336; }
-        
-        .footer-text {
-            text-align: center;
-            font-size: 13px;
-            color: #555;
-            margin-top: 40px;
-            border-top: 1px solid #222;
-            padding-top: 20px;
-        }
-        .clear { clear: both; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado Direito Constitucional I</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+button{
+padding:12px;
+margin-top:10px;
+width:100%;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+.option{
+background:#334155;
+color:white;
+}
+
+.option:hover{
+background:#475569;
+}
+
+.correct{
+background:#16a34a !important;
+}
+
+.wrong{
+background:#dc2626 !important;
+}
+
+#nextBtn{
+background:#2563eb;
+color:white;
+}
+
+#progress{
+height:25px;
+background:#334155;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:20px;
+}
+
+#bar{
+height:100%;
+width:0%;
+background:#22c55e;
+transition:.3s;
+}
+
+.stats{
+display:flex;
+gap:20px;
+justify-content:center;
+margin-bottom:20px;
+font-size:20px;
+}
+
+#feedback{
+margin-top:15px;
+padding:15px;
+border-radius:10px;
+background:#0f172a;
+display:none;
+}
+
+.result{
+text-align:center;
+font-size:22px;
+}
+
+</style>
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="nav-container">
-            <div class="nav-title">DIREITO CIVIL I - REVISÃO DINÂMICA</div>
-            <div class="scoreboard">
-                <span class="score-green">ACERTOS: <span id="score-correct">0</span></span>
-                <span class="score-red">ERROS: <span id="score-wrong">0</span></span>
-            </div>
-            <div class="clear"></div>
-        </div>
-    </div>
+<div class="container">
 
-    <div class="main-container">
-        <div class="header-banner">
-            <h1>Simulado Interativo Avançado</h1>
-            <p>50 Questões completas (incluindo todas as questões da REVISÃO (1) e tópicos focados do Resumo Expandido). Selecione uma alternativa para contabilizar sua pontuação e ler as justificativas detalhadas imediatamente.</p>
-        </div>
+<h1>SIMULADO DIREITO CONSTITUCIONAL I</h1>
 
-        <div id="quiz-wrapper"></div>
+<div class="stats">
+<div>✅ Acertos: <span id="hits">0</span></div>
+<div>❌ Erros: <span id="miss">0</span></div>
+</div>
 
-        <div class="footer-text">
-            Foco total. A aprovação é o único resultado aceitável.
-        </div>
-    </div>
+<div id="progress">
+<div id="bar"></div>
+</div>
 
-    <script>
-        const questionsData = [{"text": "(FCST - Revisão Q1) Assinale a alternativa que apresenta exemplos corretos de bem dominical do Estado.", "correct": "a", "options": {"a": "a) Prédios públicos desativados", "b": "b) Bibliotecas públicas", "c": "c) Praias", "d": "d) Ruas", "e": "e) Praças"}, "just": "A alternativa (A) está CORRETA porque bens dominicais são aqueles que constituem o patrimônio das pessoas jurídicas de direito público interno, como objeto de direito pessoal ou real, sem destinação pública específica (ex: prédios desativados). As alternativas B, C, D e E estão INCORRETAS porque bibliotecas são bens de uso especial, enquanto praias, ruas e praças são bens de uso comum do povo."}, {"text": "(FCST - Revisão Q2) Tina adquiriu novas portas para os quartos e banheiros, ainda não instaladas, e um completo sistema de refrigeração central que exigiu a remoção dos vitrais das janelas da sala com todo cuidado para serem reempregados no local. As antigas portas dos quartos foram colocadas à venda em um brechó. Assinale a afirmativa correta.", "correct": "c", "options": {"a": "a) As portas antigas dos quartos e dos banheiros são classificadas como bens móveis consumíveis.", "b": "b) As portas novas dos quartos e dos banheiros, em razão de sua destinação econômica, são consideradas imóveis.", "c": "c) Os vitrais da janela, após terem sido removidos para instalação do sistema de refrigeração, mantêm sua qualidade de imóveis.", "d": "d) Os vitrais da janela são classificados como móveis, mas mantêm o caráter da infungibilidade.", "e": "e) As portas antigas e os vitrais, após a remoção, são classificados como bens móveis e fungíveis."}, "just": "A alternativa (C) está CORRETA porque, nos termos do art. 81, II, do Código Civil, não perdem o caráter de imóveis os materiais provisoriamente separados de um prédio para nele se reempregarem. A alternativa A está errada porque as portas antigas são inconsumíveis. A alternativa B está errada porque materiais destinados a construção conservam a qualidade de móveis até serem aplicados (art. 84)."}, {"text": "(FCST - Revisão Q3) O ato-fato jurídico pode ser conceituado como:", "correct": "c", "options": {"a": "a) Todo acontecimento de origem natural ou humana que gere consequências jurídicas.", "b": "b) Todo ato lícito que tenha por fim imediato adquirir, resguardar, transferir, modificar ou extinguir direitos.", "c": "c) O evento que, embora oriundo de uma ação ou omissão humana produz efeitos na órbita jurídica, independentemente da vontade de os produzir.", "d": "d) Qualquer estipulação de consequências jurídicas, realizada por sujeitos de direito no âmbito do exercício da autonomia da vontade.", "e": "e) Ato causador de prejuízo, seja patrimonial, físico ou moral a outrem."}, "just": "A alternativa (C) está CORRETA porque o ato-fato jurídico foca no efeito do fato em si, desconsiderando se houve ou não intenção ou capacidade de manifestar a vontade (ex: a compra de um doce por uma criança pequena ou o achado de um tesouro). A está errada (fato jurídico em sentido amplo), B e D estão erradas (negócio jurídico), e E está errada (ato ilícito)."}, {"text": "(FCST - Revisão Q4) Silvio vendeu dois automóveis no mesmo dia: o primeiro foi comprado por Cláudia, 15 anos, estudante; e o segundo por José, 17 anos, casado civilmente com autorização dos pais. Tais atos serão considerados, respectivamente:", "correct": "a", "options": {"a": "a) Nulo e válido;", "b": "b) Nulo e anulável;", "c": "c) Anulável e válido;", "d": "d) Anulável e anulável;", "e": "e) Válido e válido."}, "just": "A alternativa (A) está CORRETA. Cláudia tem 15 anos e é absolutamente incapaz (art. 3º), tornando o negócio NULO (art. 166, I). José tem 17 anos (relativamente incapaz), mas como se casou civilmente, sofreu emancipação legal (art. 5º, parágrafo único, I), tornando-se plenamente capaz e o ato VÁLIDO."}, {"text": "(FCST - Revisão Q5) A respeito da prescrição e da decadência, analise as afirmativas abaixo:\n1. A prescrição só pode ser alegada pela parte a quem aproveita na petição inicial ou na contestação.\n2. Os prazos de prescrição podem ser alterados por acordos das partes.\n3. A exceção prescreve no mesmo prazo em que a pretensão.", "correct": "c", "options": {"a": "a) V - F - V", "b": "b) F - V - F", "c": "c) F - F - V", "d": "d) V - V - F", "e": "e) F - V - V"}, "just": "A alternativa (C) está CORRETA. A assertiva 1 é FALSA porque a prescrição pode ser alegada em qualquer grau de jurisdição e conhecida de ofício. A assertiva 2 é FALSA porque os prazos prescricionais são fixados por lei e não podem ser alterados por acordo (art. 192). A assertiva 3 é VERDADEIRA nos termos exatos do art. 190 do CC."}, {"text": "(FCST - Revisão Q6) João e Ana hospedaram-se por sete dias e fugiram sem pagar. A pousada ajuizou ação de cobrança 6 meses após o fato. O juiz recebeu e despachou a inicial 30 dias após o protocolo. O casal foi citado regularmente 60 dias depois. Assinale a correta:", "correct": "b", "options": {"a": "a) O despacho proferido pelo juiz suspende o prazo prescricional.", "b": "b) O despacho proferido pelo juiz interrompe o prazo prescricional.", "c": "c) No caso em tela, a prescrição deveria ter sido declarada de ofício pelo juiz já no despacho inicial.", "d": "d) A dívida está prescrita e o processo deve ser arquivado.", "e": "e) O despacho constituiu o casal em mora."}, "just": "A alternativa (B) está CORRETA. O despacho do juiz que ordena a citação interrompe a prescrição (art. 202, I). Como a ação de cobrança de hospedagem prescreve em 1 ano (art. 206, § 1º, I) e foi proposta em 6 meses, NÃO ocorreu prescrição (erradas C e D). O despacho interrompe, não suspende (errada A)."}, {"text": "(FCST - Revisão Q7) Com base nas disposições do Código Civil sobre a decadência, assinale a alternativa correta.", "correct": "c", "options": {"a": "a) Aplicam-se à decadência as normas que impedem, suspendem ou interrompem a prescrição.", "b": "b) É valida a renúncia à decadência fixada em lei.", "c": "c) Quando estabelecida por lei, deve o juiz, de ofício, conhecer da decadência.", "d": "d) Se a decadência for convencional, a parte a quem aproveita pode alega-la... e o juiz suprir a falta.", "e": "e) A decadência pode ser interrompida por até três vezes."}, "just": "A alternativa (C) está CORRETA. A decadência legal é matéria de ordem pública, devendo o juiz conhecê-la de ofício (art. 210). A está errada porque em regra não se aplicam causas de impedimento/suspensão/interrupção à decadência (art. 207). B está errada (art. 209) e D está errada porque o juiz não pode suprir a alegação de decadência convencional (art. 211)."}, {"text": "Qual a diferença conceitual fundamental entre 'Coisa' e 'Bem' segundo a doutrina civilista?", "correct": "b", "options": {"a": "a) Coisa é o gênero imaterial, e Bem é a espécie material.", "b": "b) Coisa é o gênero amplo (tudo o que existe); Bem é a espécie dotada de utilidade e valor econômico.", "c": "c) Bem é tudo o que pode ser tocado, e Coisa refere-se apenas a direitos abstratos.", "d": "d) Não há diferença jurídica, sendo termos sinônimos idênticos.", "e": "e) Coisa é o que tem valor financeiro, e Bem é o que está fora do comércio."}, "just": "A alternativa (B) está CORRETA. Coisa é tudo o que existe no universo físico ou abstrato de forma objetiva (ex: o ar atmosférico). Bem é a porção das coisas que foi internalizada pelo direito por ter utilidade prática e valoração econômica patrimonial (ex: um cilindro de ar comprimido comercializado)."}, {"text": "Os direitos da personalidade, como a vida, a honra e a imagem, são juridicamente classificados como:", "correct": "d", "options": {"a": "a) Bens móveis por determinação legal.", "b": "b) Bens dominicais do indivíduo.", "c": "c) Bens corpóreos fungíveis.", "d": "d) Bens fora do comércio por determinação legal.", "e": "e) Bens imóveis por acessão natural."}, "just": "A alternativa (D) está CORRETA. Conforme o art. 11 do Código Civil, os direitos da personalidade são intransmissíveis e irrenunciáveis, o que significa que estão indisponíveis para transações patrimoniais, enquadrando-se como bens fora do comércio por força de lei."}, {"text": "O direito à sucessão aberta (herança), mesmo que o patrimônio deixado pelo falecido seja constituído apenas por dinheiro e veículos automotores, é classificado pela lei como um bem:", "correct": "a", "options": {"a": "a) Imóvel por determinação legal.", "b": "b) Móvel por natureza.", "c": "c) Móvel por antecipação.", "d": "d) Universalidade de fato fungível.", "e": "e) Consumível jurídico."}, "just": "A alternativa (A) está CORRETA. De acordo com o art. 80, II, do Código Civil, considera-se bem imóvel para os efeitos legais o direito à sucessão aberta. Trata-se de uma ficção jurídica para garantir maior segurança na transmissão da herança até a partilha, independentemente da natureza dos bens que a compõem."}, {"text": "As máquinas e tratores que o proprietário de uma fazenda mantém intencionalmente empregados de forma permanente na exploração agrícola do imóvel são classificados como:", "correct": "b", "options": {"a": "a) Bens móveis por antecipação.", "b": "b) Bens imóveis por acessão intelectual (ou destinação).", "c": "c) Universalidade de direito.", "d": "d) Bens públicos de uso especial.", "e": "e) Benfeitorias necessárias."}, "just": "A alternativa (B) está CORRETA. Os bens móveis imobilizados pelo proprietário para servir de modo duradouro à finalidade econômica ou exploração de um imóvel são tradicionalmente denominados imóveis por acessão intelectual ou por destinação do proprietário."}, {"text": "Uma plantação de pinheiros destinada ao corte e fornecimento de madeira para uma indústria de celulose representa um exemplo clássico de:", "correct": "c", "options": {"a": "a) Bem imóvel por natureza.", "b": "b) Benfeitoria útil incorporada.", "c": "c) Bem móvel por antecipação.", "d": "d) Pertença industrial.", "e": "e) Produto mineral."}, "just": "A alternativa (C) está CORRETA. Bens móveis por antecipação são bens que atualmente são imóveis (árvores ligadas ao solo), mas que, em razão de sua destinação econômica de corte ou colheita futura, são tratados antecipadamente pelo direito como móveis para viabilizar negócios jurídicos."}, {"text": "Os bens móveis que podem substituir-se por outros da mesma espécie, qualidade e quantidade são denominados:", "correct": "a", "options": {"a": "a) Fungíveis.", "b": "b) Infungíveis.", "c": "c) Consumíveis.", "d": "d) Singulares.", "e": "e) Pertenças."}, "just": "A alternativa (A) está CORRETA. É a exata definição do art. 85 do Código Civil. Dinheiro, grãos de soja e combustível são exemplos típicos de bens fungíveis porque a substituição não gera prejuízo ao credor."}, {"text": "Um ingresso físico ou digital para um show musical de data única, sob a ótica da classificação civilista, é considerado um bem:", "correct": "b", "options": {"a": "a) Consumível de fato.", "b": "b) Consumível de direito (juridicamente).", "c": "c) Fungível por natureza.", "d": "d) Imóvel por determinação legal.", "e": "e) Universalidade de direito."}, "just": "A alternativa (B) está CORRETA. Bens consumíveis juridicamente (ou de direito) são aqueles destinados à alienação ou cujo uso importa a destruição da sua utilidade jurídica para o titular original, como é o caso de um ingresso de cinema ou show que se exaure após o uso."}, {"text": "A indivisibilidade de um determinado bem pode decorrer de três origens distintas. Quais são?", "correct": "c", "options": {"a": "a) Apenas física, judicial ou administrativa.", "b": "b) Apenas moral, religiosa ou comercial.", "c": "c) Por natureza (física), por determinação legal (lei) ou por vontade das partes (convencional).", "d": "d) Apenas por contrato ou herança.", "e": "e) Exclusivamente por ato ilícito ou usucapião."}, "just": "A alternativa (C) está CORRETA. Um bem é indivisível por natureza se a divisão o destruir (ex: um cavalo); por lei (ex: o lote urbano mínimo); ou por convenção/vontade das partes (ex: condôminos que combinam não dividir o imóvel por certo prazo, conforme permissão do art. 1.320, §1º)."}, {"text": "Uma coleção de moedas raras ou uma biblioteca jurídica montada por um advogado representam exemplos de:", "correct": "d", "options": {"a": "a) Universalidade de direito.", "b": "b) Bens imóveis por acessão artificial.", "c": "c) Bens consumíveis por natureza.", "d": "d) Universalidade de fato.", "e": "e) Produtos de extração continuada."}, "just": "A alternativa (D) está CORRETA. O art. 90 do CC define como universalidade de fato a pluralidade de bens singulares que, pertencendo à mesma pessoa, tenham destinação unitária por vontade do titular (ex: livros em uma biblioteca, animais em um rebanho)."}, {"text": "A massa falida de uma empresa e a herança de uma pessoa falecida (antes da partilha) são classificadas juridicamente como:", "correct": "a", "options": {"a": "a) Universalidade de direito.", "b": "b) Universalidade de fato.", "c": "c) Bens singulares compostos.", "d": "d) Pertenças empresariais.", "e": "e) Bens dominicais em condomínio."}, "just": "A alternativa (A) está CORRETA. Art. 91 do CC: constitui universalidade de direito o complexo de relações jurídicas, de uma pessoa, dotadas de valor econômico, reunidas por determinação da lei (ex: herança, massa falida, patrimônio líquido)."}, {"text": "Qual é a regra geral decorrente do princípio da gravitação jurídica no que tange aos bens reciprocamente considerados?", "correct": "b", "options": {"a": "a) O bem principal segue a sorte do acessório.", "b": "b) O bem acessório segue a sorte do principal (salvo disposição em contrário).", "c": "c) Bens acessórios e principais jamais se comunicam nos contratos.", "d": "d) As pertenças sempre seguem o principal de forma automática.", "e": "e) Os frutos civis anulam a existência do bem principal."}, "just": "A alternativa (B) está CORRETA. A regra geral do direito civil dita que o acessório segue a sorte do principal (gravitação jurídica). Se você vende uma casa, as árvores frutíferas nela cravadas vão junto, exceto se houver cláusula expressa excluindo-as."}, {"text": "Os aparelhos de ar-condicionado instalados sem quebra da estrutura de um escritório e os tratores de uma fazenda são classificados como:", "correct": "c", "options": {"a": "a) Benfeitorias úteis.", "b": "b) Benfeitorias necessárias.", "c": "c) Pertenças.", "d": "d) Frutos industriais.", "e": "e) Partes integrantes inseparáveis."}, "just": "A alternativa (C) está CORRETA. Pertenças (art. 93 do CC) são bens móveis que, não constituindo partes integrantes, se destinam, de modo duradouro, ao uso, ao serviço ou ao aformoseamento de outro. Elas NÃO seguem o principal automaticamente nas vendas (art. 94)."}, {"text": "Qual o macete fundamental para diferenciar na prova uma Benfeitoria de uma Pertença?", "correct": "a", "options": {"a": "a) A benfeitoria incorpora-se fisicamente ao bem principal (torna-se parte integrante); a pertença mantém autonomia física.", "b": "b) A pertença é sempre imóvel; a benfeitoria é sempre móvel.", "c": "c) Benfeitorias são criadas por lei; pertenças são criadas por contrato público.", "d": "d) Não há diferença, ambas são sinônimas no art. 93 do Código Civil.", "e": "e) As pertenças são sempre de uso exclusivo do Estado."}, "just": "A alternativa (A) está CORRETA. Benfeitorias sofrem incorporação física (ex: reforma do teto, construção de muro), modificando ou aderindo à coisa principal. Pertenças guardam sua separação física (ex: uma televisão num quarto de hotel, um trator num galpão)."}, {"text": "A reforma de um telhado que estava prestes a desabar em uma casa alugada configura uma benfeitoria:", "correct": "a", "options": {"a": "a) Necessária.", "b": "b) Útil.", "c": "c) Voluptuária.", "d": "d) Por acessão artificial.", "e": "e) Suntuária."}, "just": "A alternativa (A) está CORRETA. Benfeitorias necessárias são aquelas que têm por fim conservar o bem ou evitar que ele se deteriore ou seja destruído (art. 96, §3º do CC). O reparo de vazamentos ou estruturas em risco são os exemplos padrão."}, {"text": "A instalação de grades de proteção nas janelas ou a construção de uma garagem privativa em uma residência são consideradas:", "correct": "b", "options": {"a": "a) Benfeitorias necessárias.", "b": "b) Benfeitorias úteis.", "c": "c) Benfeitorias voluptuárias.", "d": "d) Pertenças ornamentais.", "e": "e) Acessões intelectuais."}, "just": "A alternativa (B) está CORRETA. Benfeitorias úteis são as que aumentam ou facilitam o uso do bem (art. 96, §2º). Elas não são urgentes para a sobrevivência da estrutura (como as necessárias), mas trazem nítida melhoria na sua utilidade prática."}, {"text": "A construção de uma piscina aquecida ou de um chafariz decorativo no jardim de uma mansão constitui uma benfeitoria:", "correct": "c", "options": {"a": "a) Necessária.", "b": "b) Útil.", "c": "c) Voluptuária.", "d": "d) Pertença imobiliária.", "e": "e) Acessão natural."}, "just": "A alternativa (C) está CORRETA. Benfeitorias voluptuárias são as de mero deleite, luxo ou recreio, que não aumentam o uso habitual do bem, ainda que o tornem mais agradável ou de elevado valor (art. 96, §1º)."}, {"text": "Os aluguéis decorrentes da locação de um apartamento e os juros produzidos por uma aplicação financeira são classificados como:", "correct": "d", "options": {"a": "a) Frutos naturais.", "b": "b) Frutos industriais.", "c": "c) Produtos de consumo.", "d": "d) Frutos civis.", "e": "e) Pertenças econômicas."}, "just": "A alternativa (D) está CORRETA. Frutos civis representam as rendas geradas pela fruição ou uso de uma coisa principal por terceiros (ex: juros, aluguéis, dividendos). Eles nascem periodicamente sem exaurir a fonte produtora."}, {"text": "Qual a diferença essencial entre 'Fruto' e 'Produto' no Direito Civil?", "correct": "a", "options": {"a": "a) Frutos se renovam periodicamente sem diminuir a substância do principal; Produtos diminuem a substância progressivamente ao serem extraídos.", "b": "b) Frutos pertencem apenas ao Estado; Produtos ao particular.", "c": "c) Produtos se renovam naturalmente; Frutos dependem de processos químicos fabris.", "d": "d) Frutos são sempre imóveis; Produtos são sempre móveis.", "e": "e) Não há diferença prática ou legal entre eles."}, "just": "A alternativa (A) está CORRETA. Frutos têm a característica da periodicidade e não esgotam a fonte (ex: laranjas na macieira, aluguel). Produtos (ex: minério de ferro extraído de uma mina, petróleo) geram o esgotamento progressivo e definitivo da substância do bem principal."}, {"text": "As repartições públicas, hospitais públicos estaduais e prédios de universidades federais pertencem a qual categoria de bens públicos?", "correct": "b", "options": {"a": "a) Bens de uso comum do povo.", "b": "b) Bens de uso especial.", "c": "c) Bens dominicais.", "d": "d) Bens privados da administração.", "e": "e) Res nullius."}, "just": "A alternativa (B) está CORRETA. Bens de uso especial são aqueles afetados a uma finalidade pública específica, servindo de base física para a execução de serviços públicos ou estabelecimentos da administração (art. 99, II do CC)."}, {"text": "Os bens públicos que se encontram 'afetados' (seja para uso comum ou uso especial) possuem qual restrição fundamental em relação à sua comercialização?", "correct": "a", "options": {"a": "a) São inalienáveis enquanto mantiverem essa destinação/afetação pública.", "b": "b) Podem ser vendidos livremente por qualquer servidor público.", "c": "c) São alienáveis por contrato verbal simples.", "d": "d) Só podem ser vendidos para estrangeiros.", "e": "e) São passíveis de penhora imediata por bancos privados."}, "just": "A alternativa (A) está CORRETA. O art. 100 do CC estabelece expressamente que os bens públicos de uso comum do povo e os de uso especial são inalienáveis enquanto conservarem a sua qualificação. Para serem vendidos, precisam passar pelo processo administrativo de 'desafetação', tornando-se bens dominicais."}, {"text": "Um particular constrói uma cabana e reside por 30 anos ininterruptos em um terreno de propriedade comprovada de um Município. Esse particular poderá requerer a Usucapião desse imóvel?", "correct": "b", "options": {"a": "a) Sim, pois ultrapassou o prazo de 15 anos da usucapião extraordinária.", "b": "b) Não, porque os bens públicos são imprescritíveis, não sofrendo usucapião em nenhuma hipótese.", "c": "c) Sim, desde que pague os impostos atrasados ao Município.", "d": "d) Sim, mas apenas se o terreno for classificado como bem de uso especial.", "e": "e) Sim, sob a condição de doar metade da área para uma creche local."}, "just": "A alternativa (B) está CORRETA. Trata-se de texto constitucional (art. 183, §3º e art. 191, parágrafo único da CF) e do art. 102 do Código Civil: 'Os bens públicos não estão sujeitos a usucapião'. Eles gozam da característica da imprescritibilidade."}, {"text": "O falecimento natural de uma pessoa idosa em seu leito hospitalar e a queda de um raio que destrói uma plantação segurada configuram, respectivamente, fatos jurídicos classificados como:", "correct": "c", "options": {"a": "a) Ato ilícito e Negócio jurídico.", "b": "b) Fato natural extraordinário e Ato-fato jurídico.", "c": "c) Fato natural ordinário e Fato natural extraordinário.", "d": "d) Negócio jurídico e Negócio jurídico.", "e": "e) Ato jurídico em sentido estrito e Abuso de direito."}, "just": "A alternativa (C) está CORRETA. A morte natural é um evento biológico comum e previsível no ciclo da vida (fato natural ordinário). A queda de um raio ou uma tempestade catastrófica imprevisível enquadra-se como evento fortuito da natureza (fato natural extraordinário)."}, {"text": "O que caracteriza essencialmente o Negócio Jurídico diferenciando-o das demais subespécies de atos jurídicos?", "correct": "d", "options": {"a": "a) A total ausência de manifestação humana.", "b": "b) A produção de efeitos punitivos fixados pelo Código Penal.", "c": "c) A impossibilidade de participação de advogados.", "d": "d) A ampla presença da autonomia da vontade das partes na modelação dos efeitos jurídicos desejados.", "e": "e) Ser obrigatoriamente um contrato de adesão internacional."}, "just": "A alternativa (D) está CORRETA. No negócio jurídico (ex: contratos, testamento), as partes gozam de autonomia da vontade para estipular e escolher as regras, cláusulas e os exatos efeitos jurídicos que pretendem produzir, dentro dos limites da lei."}, {"text": "Quais são os três requisitos de validade genéricos exigidos para QUALQUER negócio jurídico, esculpidos no Art. 104 do Código Civil? (Lembre do Macete CAPOF)", "correct": "b", "options": {"a": "a) Capacidade financeira, Objeto físico e Forma escrita em cartório.", "b": "b) Agente capaz, Objeto lícito, possível, determinado ou determinável, e Forma prescrita ou não defesa em lei.", "c": "c) Consentimento expresso, Objeto caro e Fiscalização do Ministério Público.", "d": "d) Duas testemunhas, Assinatura digital e Objeto corpóreo.", "e": "e) Agente maior de 21 anos, Objeto mercantil e Forma pública obrigatória."}, "just": "A alternativa (B) está CORRETA. O art. 104 traz os três pressupostos de validade estruturais: 1) Agente capaz; 2) Objeto lícito, possível, determinado ou determinável; 3) Forma prescrita ou não defesa (proibida) em lei. (Macete: CAPOF - CAPacidade, Objeto, Forma)."}, {"text": "A estipulação contratual baseada em um evento FUTURO e INCERTO que subordina a eficácia do negócio jurídico (ex: 'Te darei um carro SE você passar na OAB') denomina-se:", "correct": "a", "options": {"a": "a) Condição.", "b": "b) Termo.", "c": "c) Encargo ou Modo.", "d": "d) Cláusula penal punitiva.", "e": "e) Exceção de contrato não cumprido."}, "just": "A alternativa (A) está CORRETA. Condição é o elemento acidental do negócio jurídico que subordina seus efeitos a um acontecimento futuro e incerto (art. 121 do CC). A palavra-chave é INCERTEZA (o 'SE')."}, {"text": "Se um pai assina um contrato dizendo: 'Transfiro a posse deste apartamento para meu filho no dia 15 de agosto de 2026', o elemento acidental inserido que indica um evento FUTURO e CERTO chama-se:", "correct": "b", "options": {"a": "a) Condição resolutiva.", "b": "b) Termo (inicial).", "c": "c) Encargo suntuário.", "d": "d) Negócio nulo por prazo indeterminado.", "e": "e) Simulação contratual."}, "just": "A alternativa (B) está CORRETA. O termo subordina a eficácia do negócio jurídico a um evento futuro e CERTO (art. 131 do CC). Pode ser uma data do calendário ou um evento fatal que certamente ocorrerá (ex: a morte de alguém, no contrato de seguro de vida)."}, {"text": "A doação de um terreno feita por um Município para uma empresa privada sob a obrigação de ali construir uma creche no prazo de 2 anos representa um negócio jurídico com:", "correct": "c", "options": {"a": "a) Condição suspensiva absoluta.", "b": "b) Termo final improrrogável.", "c": "c) Encargo (ou Modo).", "d": "d) Vício de consentimento por dolo.", "e": "e) Nulidade por objeto impossível."}, "just": "A alternativa (C) está CORRETA. O encargo ou modo (art. 136 do CC) impõe um ônus, tarefa ou obrigação ao beneficiário de um ato de liberalidade (doação ou testamento). O encargo não suspende a aquisição do direito, mas seu descumprimento pode levar à revogação do ato."}, {"text": "Quando um contratante emite declaração de vontade baseada em uma falsa percepção da realidade, enganando-se sozinho de forma espontânea sobre a natureza do negócio ou qualidade do objeto, temos o vício do consentimento do:", "correct": "a", "options": {"a": "a) Erro (ou ignorância).", "b": "b) Dolo.", "c": "c) Coação moral.", "d": "d) Estado de perigo.", "e": "e) Lesão contratual."}, "just": "A alternativa (A) está CORRETA. No Erro (art. 138), o agente se engana sozinho (visão distorcida espontânea). Se a outra parte usasse de artifícios maliciosos para enganá-lo ativamente, o vício seria o Dolo."}, {"text": "Se um vendedor de carros adultera maliciosamente o hodômetro de um veículo antigo para mascarar a alta quilometragem e induzir o comprador a fechar o negócio, o contrato está eivado pelo vício do:", "correct": "b", "options": {"a": "a) Erro essencial.", "b": "b) Dolo.", "c": "c) Estado de perigo.", "d": "d) Simulação absoluta.", "e": "e) Coação física."}, "just": "A alternativa (B) está CORRETA. O dolo (art. 145 do CC) é o artifício, ardil ou manobra intencional empregada para induzir ou manter alguém em erro, visando a celebração de um negócio jurídico prejudicial."}, {"text": "O vício do consentimento configurado quando o agente, sob fundada ameaça de dano iminente e considerável à sua pessoa, à sua família ou aos seus bens, é forçado a assinar um contrato desfavorável denomina-se:", "correct": "c", "options": {"a": "a) Dolo acidental.", "b": "b) Lesão por inexperiência.", "c": "c) Coação (moral / vis compulsiva).", "d": "d) Estado de perigo familiar.", "e": "e) Fraude contra credores."}, "just": "A alternativa (C) está CORRETA. A coação moral (art. 151 do CC) vicia a vontade pela perda da liberdade de escolha em decorrência de grave ameaça incutida no espírito do contratante. O negócio resultante é anulável."}, {"text": "Um pai, vendo seu filho sofrer um grave acidente numa estrada isolada, concorda em pagar um valor 10 vezes maior que o normal para o único médico disponível na região realizar a cirurgia de emergência. Esse negócio jurídico pode ser anulado por:", "correct": "d", "options": {"a": "a) Erro de cálculo.", "b": "b) Dolo de terceiro.", "c": "c) Lesão.", "d": "d) Estado de perigo.", "e": "e) Coação física irresistível."}, "just": "A alternativa (D) está CORRETA. O Estado de Perigo (art. 156 do CC) configura-se quando alguém, premido da necessidade de salvar-se, ou a pessoa de sua família, de grave dano conhecido da outra parte, assume obrigação excessivamente onerosa."}, {"text": "Uma pessoa, em extrema necessidade financeira imediata ou por manifesta inexperiência, vende seu único imóvel avaliado em R$ 500.000 por apenas R$ 80.000 para um comprador oportunista. Esse negócio jurídico apresenta o defeito da:", "correct": "e", "options": {"a": "a) Fraude contra credores.", "b": "b) Simulação relativa.", "c": "c) Coação moral.", "d": "d) Erro substancial.", "e": "e) Lesão."}, "just": "A alternativa (E) está CORRETA. Ocorre a Lesão (art. 157 do CC) quando uma pessoa, sob premente necessidade, ou por inexperiência, se obriga a prestação manifestamente desproporcional ao valor da prestação oposta. Diferencia-se do estado de perigo porque aqui o risco é patrimonial/financeiro, não de vida/saúde física."}, {"text": "Um devedor insolvente, sabendo que possui várias execuções judiciais contra si, decide doar ou vender todos os seus bens restantes para parentes próximos com o intuito claro de desfalcar seu patrimônio e não pagar os credores originais. Esse ato configura:", "correct": "a", "options": {"a": "a) Fraude contra credores.", "b": "b) Simulação absoluta.", "c": "c) Dolo de aproveitamento.", "d": "d) Exercício regular de direito.", "e": "e) Lesão qualificada."}, "just": "A alternativa (A) está CORRETA. A fraude contra credores (art. 158 do CC) é o defeito social do negócio jurídico praticado pelo devedor que se desfalca de suas garantias patrimoniais para lesar seus credores quirografários, gerando a anulabilidade do ato por meio da Ação Pauliana."}, {"text": "Os defeitos do negócio jurídico que envolvem vício de consentimento (erro, dolo, coação, estado de perigo, lesão) e vício social (fraude contra credores) acarretam qual consequência jurídica?", "correct": "b", "options": {"a": "a) Nulidade absoluta automática.", "b": "b) Anulabilidade do negócio jurídico.", "c": "c) Inexistência jurídica do contrato.", "d": "d) Validade plena eterna sem direito a indenização.", "e": "e) Prisão imediata dos contratantes."}, "just": "A alternativa (B) está CORRETA. Conforme o art. 171, II do Código Civil, são ANULÁVEIS os negócios jurídicos por vício resultante de erro, dolo, coação, estado de perigo, lesão ou fraude contra credores. Eles produzem efeitos normalmente até que uma sentença judicial os anule."}, {"text": "Qual das seguintes hipóteses gera a NULIDADE ABSOLUTA do negócio jurídico, conforme o Art. 166 do Código Civil?", "correct": "a", "options": {"a": "a) Quando for celebrado por pessoa absolutamente incapaz.", "b": "b) Quando houver erro substancial sobre o objeto.", "c": "c) Quando for praticado mediante coação moral.", "d": "d) Quando o agente agir com inexperiência (lesão).", "e": "e) Quando houver fraude contra credores não contestada."}, "just": "A alternativa (A) está CORRETA. O art. 166, I dita que é nulo o negócio jurídico quando celebrado por pessoa absolutamente incapaz (menores de 16 anos). As demais alternativas (B, C, D, E) são causas taxativas de anulabilidade (nulidade relativa)."}, {"text": "Qual o prazo decadencial geral fixado pelo Código Civil para pleitear a anulação de um negócio jurídico eivado por vício do consentimento (como dolo ou coação)?", "correct": "c", "options": {"a": "a) 1 ano.", "b": "b) 2 anos.", "c": "c) 4 anos.", "d": "d) 5 anos.", "e": "e) O ato é imprescritível."}, "just": "A alternativa (C) está CORRETA. O art. 178 do CC fixa o prazo decadencial de 4 (quatro) anos para pleitear a anulação do negócio jurídico, contado: no caso de coação, do dia em que ela cessar; nos demais vícios, do dia em que se realizou o negócio."}, {"text": "Qual o prazo para anular um negócio jurídico quando a lei prevê que ele é anulável, mas não estabelece expressamente um prazo específico no texto do artigo?", "correct": "b", "options": {"a": "a) 1 ano.", "b": "b) 2 anos.", "c": "c) 3 anos.", "d": "d) 4 anos.", "e": "e) 10 anos."}, "just": "A alternativa (B) está CORRETA. Trata-se do prazo supletivo ou residual da anulabilidade fixado pelo art. 179 do Código Civil: 'Quando a lei dispuser que determinado ato é anulável, sem estabelecer prazo, este será de dois anos, a contar da data da conclusão do ato'."}, {"text": "Complete a máxima doutrinária destacada no resumo sobre a teoria das invalidades: O negócio jurídico nulo ______; enquanto o negócio jurídico anulável ______.", "correct": "a", "options": {"a": "a) nasce morto e não convalesce pelo tempo; nasce vivo mas doente, podendo ser confirmado ou sanado pelo tempo.", "b": "b) nasce vivo e eterno; nasce morto e nunca pode ser visto pelo juiz.", "c": "c) depende de registro internacional; depende apenas de assinatura verbal.", "d": "d) gera prisão em flagrante; gera mera advertência administrativa.", "e": "e) prescreve em 3 anos; é imprescritível."}, "just": "A alternativa (A) está CORRETA. É a distinção clássica: a nulidade absoluta ('nasce morto') envolve ordem pública, não se confirma e não convalesce pelo decurso do tempo (art. 169). A anulabilidade ('nasce vivo mas defeituoso') atende a interesse privado, admitindo confirmação expressa ou tácita e convalescimento pelo tempo (art. 172)."}, {"text": "A respeito da declaração judicial de nulidade absoluta e de anulabilidade, assinale a regra correta de procedimento para o magistrado:", "correct": "d", "options": {"a": "a) O juiz pode declarar a anulabilidade de ofício, sem que ninguém peça.", "b": "b) O juiz nunca pode declarar a nulidade absoluta se as partes não provocarem.", "c": "c) Ambas as invalidades dependem exclusivamente de parecer do Ministério Público Federal.", "d": "d) A nulidade absoluta deve ser declarada de ofício pelo juiz quando a encontrar provada nos autos; a anulabilidade depende de provocação das partes.", "e": "e) Nenhuma invalidade pode ser julgada por juízes de primeira instância."}, "just": "A alternativa (D) está CORRETA. O art. 168, parágrafo único do CC impõe que as nulidades absolutas devem ser pronunciadas pelo juiz, de ofício, quando conhecer do negócio ou dos seus efeitos e as encontrar provadas. Já o art. 177 veda ao juiz pronunciar a anulabilidade de ofício."}, {"text": "O Art. 187 do Código Civil preceitua: 'Também comete ato ilícito o titular de um direito que, ao exercê-lo, excede manifestamente os limites impostos pelo seu fim econômico ou social, pela boa-fé ou pelos bons costumes'. Esse artigo fundamenta o instituto do:", "correct": "c", "options": {"a": "a) Enriquecimento ilícito criminal.", "b": "b) Legítima defesa antecipada.", "c": "c) Abuso de Direito (Ato ilícito objetivo).", "d": "d) Erro de direito escusável.", "e": "e) Caso fortuito interno."}, "just": "A alternativa (C) está CORRETA. O abuso de direito é uma conduta originalmente amparada em um direito subjetivo existente, mas exercida de forma desmedida, desrespeitando a boa-fé objetiva e os fins sociais e econômicos daquele direito, gerando dever de indenizar independentemente de culpa estrita."}, {"text": "São elementos estruturais clássicos indispensáveis para a configuração da Responsabilidade Civil SUBJETIVA (regra geral do Art. 186 do CC):", "correct": "b", "options": {"a": "a) Apenas o dano e a certidão de ocorrência policial.", "b": "b) Conduta (ação/omissão), Dano, Nexo Causal e Culpa (lato sensu - dolo ou culpa estrita).", "c": "c) Risco da atividade econômica e lucro auferido pelo causador.", "d": "d) Força maior natural e ausência de dolo.", "e": "e) Apenas a intenção maliciosa, dispensando a ocorrência de prejuízo."}, "just": "A alternativa (B) está CORRETA. A responsabilidade civil subjetiva baseia-se na teoria da culpa. Exige-se o preenchimento simultâneo de quatro fatores: 1) Conduta voluntária humana; 2) Dano (patrimonial ou moral); 3) Nexo causal ligando a conduta ao dano; 4) Elemento anímico da Culpa ou Dolo."}, {"text": "A responsabilidade civil OBJETIVA (esculpida no Art. 927, parágrafo único do CC) caracteriza-se fundamentalmente por:", "correct": "a", "options": {"a": "a) Dispensar a verificação ou prova de culpa do agente, bastando nexo e dano vinculados ao risco da atividade.", "b": "b) Exigir a prova de dolo específico com dolo penal associado.", "c": "c) Aplicar-se unicamente em conflitos domésticos familiares.", "d": "d) Excluir o dever de indenizar danos morais.", "e": "e) Ser inconstitucional no direito civil privado atual."}, "just": "A alternativa (A) está CORRETA. A responsabilidade objetiva baseia-se na Teoria do Risco: se a atividade normalmente desenvolvida pelo autor do dano implicar, por sua natureza, risco para os direitos de outrem, haverá obrigação de reparar o dano, independentemente de culpa."}, {"text": "Se o motorista de um ônibus de transporte público colide com um poste e fere os passageiros, a empresa responde com base na responsabilidade:", "correct": "b", "options": {"a": "a) Subjetiva, exigindo que as vítimas comprovem que o motorista estava correndo.", "b": "b) Objetiva, pois decorre do risco da atividade de transporte, dispensando prova de culpa.", "c": "c) Contratual nula por força maior de trânsito.", "d": "d) Inexistente, devendo o processo correr apenas contra a fabricante do poste.", "e": "e) Penal exclusiva, sem repercussão no âmbito cível."}, "just": "A alternativa (B) está CORRETA. O transporte coletivo de pessoas gera responsabilidade civil objetiva para a concessionária do serviço público, fundada no risco da atividade econômica desenvolvida e no art. 37, §6º da CF/88, bastando a comprovação do fato, do dano e do nexo."}, {"text": "A perda da pretensão de exigir judicialmente o cumprimento de um direito violado, decorrente da inércia do titular durante o prazo fixado em lei, caracteriza o instituto da:", "correct": "a", "options": {"a": "a) Prescrição.", "b": "b) Decadência.", "c": "c) Perempção administrativa.", "d": "d) Preclusão lógica.", "e": "e) Coisa julgada formal."}, "just": "A alternativa (A) está CORRETA. O art. 189 do CC consagra o princípio da *actio nata*: 'Violado o direito, nasce para o titular a pretensão, a qual se extingue, pela prescrição, nos prazos a que aludem os arts. 205 e 206'. A prescrição atinge a pretensão de ação judicial protetiva, mantendo o direito material subjacente como obrigação natural."}, {"text": "Quando a lei não fixa prazo menor ou específico para determinada situação jurídica, qual é o prazo geral de prescrição previsto no Art. 205 do Código Civil?", "correct": "d", "options": {"a": "a) 1 ano.", "b": "b) 3 anos.", "c": "c) 5 anos.", "d": "d) 10 anos.", "e": "e) 20 anos."}, "just": "A alternativa (D) está CORRETA. O prazo geral de prescrição (residual) fixado pelo Código Civil de 2002 é de 10 anos, aplicável a todas as ações em que a lei não tenha determinado prazo especial menor (ex: ações de inadimplemento contratual geral)."}, {"text": "A pretensão para propor uma ação buscando a reparação civil extracontratual por danos materiais sofridos em acidente automobilístico prescreve em qual prazo?", "correct": "b", "options": {"a": "a) 1 ano.", "b": "b) 3 anos.", "c": "c) 5 anos.", "d": "d) 10 anos.", "e": "e) É imprescritível."}, "just": "A alternativa (B) está CORRETA. O art. 206, § 3º, V do Código Civil estabelece o prazo de 3 (três) anos para a pretensão de reparação civil. É um dos prazos mais recorrentes em provas de Direito Civil."}, {"text": "O prazo prescricional para a pretensão de cobrança de dívidas líquidas constantes de instrumento público (como uma escritura pública) ou particular (como um contrato particular escrito de mútuo) é de:", "correct": "c", "options": {"a": "a) 3 anos.", "b": "b) 4 anos.", "c": "c) 5 anos.", "d": "d) 10 anos.", "e": "e) 1 ano."}, "just": "A alternativa (C) está CORRETA. Conforme o art. 206, § 5º, I do CC, prescreve em 5 (cinco) anos a pretensão de cobrança de dívidas líquidas constantes de instrumento público ou particular."}, {"text": "A respeito da Renúncia da Prescrição, assinale a opção jurídica perfeitamente válida de acordo com o Art. 191 do CC:", "correct": "c", "options": {"a": "a) É permitida a renúncia prévia da prescrição escrita no texto do contrato original.", "b": "b) A prescrição nunca pode ser renunciada sob nenhuma hipótese.", "c": "c) A renúncia da prescrição só é válida sendo feita após a sua consumação definitiva, e desde que não prejudique terceiros.", "d": "d) A renúncia depende obrigatoriamente de autorização do Ministério Público estadual.", "e": "e) Somente os absolutamente incapazes podem renunciar à prescrição."}, "just": "A alternativa (C) está CORRETA. Art. 191 do CC: 'A renúncia da prescrição pode ser expressa ou tácita, e só valerá, sendo feita, sem prejuízo de terceiro, depois que a prescrição se consumar'."}, {"text": "Com base nos macetes sobre tempo contidos no resumo expandido, qual o efeito gerado pelas causas que INTERROMPEM a prescrição?", "correct": "a", "options": {"a": "a) Zera totalmente o cronômetro do prazo, fazendo o relógio recomeçar a correr do zero após o ato interruptivo.", "b": "b) Congela temporariamente o relógio, aproveitando o tempo que já passou quando o prazo voltar a correr.", "c": "c) Cancela o direito material, extinguindo o processo imediatamente sem resolução do mérito.", "d": "d) Pode ocorrer até dez vezes seguidas no mesmo processo por mera petição.", "e": "e) Transforma a prescrição em decadência convencional automática."}, "just": "A alternativa (A) está CORRETA. (Macete: Interrupção ZERA). A interrupção da prescrição inutiliza o tempo decorrido anteriormente; o prazo recomeça a correr por inteiro, do zero (art. 202, parágrafo único). Lembre-se que a interrupção da prescrição só pode ocorrer UMA ÚNICA VEZ."}, {"text": "O que ocorre com o prazo prescricional quando incide uma causa de SUSPENSÃO da prescrição?", "correct": "b", "options": {"a": "a) O prazo zera e recomeça a contagem integral.", "b": "b) O relógio do prazo é pausado; cessada a causa da suspensão, o prazo volta a correr computando e somando o tempo anteriormente decorrido.", "c": "c) O direito é transferido para a titularidade da União Federal.", "d": "d) O processo judicial é extinto por carência de ação executiva.", "e": "e) A contagem passa a ser feita em dias úteis forenses."}, "just": "A alternativa (B) está CORRETA. (Macete: Suspensão PARA/PAUSA). Na suspensão, o prazo decorrido antes do evento suspensivo fica guardado. Quando a causa da suspensão desaparece, o relógio volta a andar de onde havia parado."}, {"text": "A extinção do próprio DIREITO POTESTATIVO em razão do seu não exercício dentro do prazo prefixado em lei ou em contrato por convenção das partes é denominada:", "correct": "b", "options": {"a": "a) Prescrição extintiva.", "b": "b) Decadência (ou caducidade).", "c": "c) Preclusão temporal recursal.", "d": "d) Perempção da lide civil.", "e": "e) Coação consumada."}, "just": "A alternativa (B) está CORRETA. A decadência atinge diretamente o direito potestativo (aquele direito que coloca a outra parte em estado de mera sujeição, não admitindo contestação de mérito, ex: o direito de anular um contrato ou divorciar-se). Caducado o prazo, extingue-se o próprio direito material."}, {"text": "A prescrição intercorrente é uma modalidade especial de perda da pretensão que se caracteriza por ocorrer:", "correct": "d", "options": {"a": "a) Antes do ajuizamento de qualquer processo judicial.", "b": "b) Apenas em contratos verbais internacionais.", "c": "c) Unicamente contra menores de 16 anos.", "d": "d) No curso do processo judicial já iniciado, em razão da inércia prolongada e injustificada do credor em movimentar o feito.", "e": "e) Exclusivamente no balcão de cartórios de notas extrajudiciais."}, "just": "A alternativa (D) está CORRETA. A prescrição intercorrente verifica-se dentro do processo judicial em andamento, quando o autor/exequente deixa de promover os atos processuais de sua incumbência por tempo igual ou superior ao prazo prescricional da pretensão de direito material buscada."}, {"text": "Sobre o instituto da Decadência CONVENCIONAL (pactuada livremente entre as partes dentro de uma cláusula de contrato), assinale a regra jurídica correta:", "correct": "d", "options": {"a": "a) O juiz deve conhecê-la e decretá-la de ofício.", "b": "b) É proibida por violar normas cogentes de ordem pública.", "c": "c) Admite renúncia a qualquer momento, mesmo após consumada.", "d": "d) A parte a quem aproveita deve alegá-la em qualquer grau de jurisdição, sendo vedado ao juiz suprir a alegação de ofício.", "e": "e) Pode ser interrompida por notificação extrajudicial até três vezes."}, "just": "A alternativa (D) está CORRETA. Art. 211 do CC: 'Se a decadência for convencional, a parte a quem aproveita pode alegá-la em qualquer grau de jurisdição, mas o juiz não pode suprir a alegação' (ou seja, não pode declarar de ofício, ao contrário da decadência legal)."}, {"text": "O Código Civil estipula hipóteses em que a prescrição simplesmente NÃO corre (impedimento/suspensão). Diante disso, corre prescrição contra os absolutamente incapazes (menores de 16 anos)?", "correct": "b", "options": {"a": "a) Sim, o prazo corre normalmente para não prejudicar o comércio.", "b": "b) Não corre a prescrição contra os absolutamente incapazes, protegendo integralmente seus interesses.", "c": "c) Sim, mas o prazo é contado em dobro.", "d": "d) Só corre se o menor possuir patrimônio líquido bilionário.", "e": "e) Corre apenas em ações de indenização por colisão de veículos."}, "just": "A alternativa (B) está CORRETA. Conforme o art. 198, I do Código Civil, não corre a prescrição contra os absolutamente incapazes de que trata o art. 3º. Trata-se de norma protetiva da infância e da incapacidade civil plena."}, {"text": "A respeito dos direitos de autor (direitos autorais), em sua vertente de exploração patrimonial econômica, como devem ser classificados na disciplina dos bens?", "correct": "a", "options": {"a": "a) Bens móveis por determinação legal.", "b": "b) Bens imóveis por destinação intelectual.", "c": "c) Bens incorpóreos imóveis por lei.", "d": "d) Bens públicos dominicais imateriais.", "e": "e) Pertenças autorais consumíveis."}, "just": "A alternativa (A) está CORRETA. Conforme o art. 83, III do CC, consideram-se bens móveis para os efeitos legais os direitos pessoais de caráter patrimonial e respectivas ações. Os direitos autorais patrimoniais seguem estritamente essa regra de mobilidade por ficção legal."}, {"text": "Se um indivíduo depara-se com um enxame de abelhas ou um animal silvestre perdido em local aberto desabitado e dele se apossa de forma mansa. Esse evento fático configura:", "correct": "c", "options": {"a": "a) Negócio jurídico bilateral solene.", "b": "b) Ato ilícito de abuso de direito.", "c": "c) Ato-fato jurídico lícito por apropriação/ocupação.", "d": "d) Fato natural extraordinário imprevisível.", "e": "e) Simulação relativa lesiva."}, "just": "A alternativa (C) está CORRETA. Trata-se de ato-fato jurídico. A conduta humana de apreensão do animal produz um efeito de aquisição originária da propriedade (ocupação) determinado pela lei, operando seus efeitos jurídicos independentemente de uma declaração negocial de vontade estruturada."}, {"text": "Caso um proprietário realize a venda de seu estabelecimento comercial de panificação (padaria) e, no contrato assinado, silencie completamente sobre os fornos industriais e balcões de atendimento móveis. O que acontece com esses bens secundários?", "correct": "b", "options": {"a": "a) São benfeitorias úteis e acompanham a venda do imóvel obrigatoriamente.", "b": "b) São pertenças e, em regra, NÃO estão abrangidos pelo negócio jurídico do bem principal, salvo disposição contrária.", "c": "c) São considerados imóveis por acessão natural e pertencem ao comprador.", "d": "d) O contrato se torna nulo por incompletude do objeto principal.", "e": "e) São convertidos automaticamente em bens dominicais públicos."}, "just": "A alternativa (B) está CORRETA. Art. 94 do CC: Os negócios jurídicos que dizem respeito ao bem principal não abrangem as pertenças, salvo se o contrário resultar da lei, da manifestação de vontade, ou das circunstâncias do caso. Os fornos e balcões mantêm autonomia e não são arrastados de forma cega pelo principal."}, {"text": "Diante de uma situação de extrema urgência onde um incêndio atinge um condomínio, um morador destrói intencionalmente a porta do apartamento vizinho para retirar uma criança que estava inalando fumaça. Essa conduta configura um ato ilícito?", "correct": "a", "options": {"a": "a) Não constitui ato ilícito, pois praticado em estado de necessidade para remover perigo iminente.", "b": "b) Sim, constitui ato ilícito indenizável de forma subjetiva em dobro.", "c": "c) Configura crime inafiançável com perda imediata de direitos civis.", "d": "d) É um negócio jurídico implícito com encargo social.", "e": "e) Trata-se de simulação defensiva por dolo recíproco."}, "just": "A alternativa (A) está CORRETA. Art. 188, II do CC consagra que NÃO constituem atos ilícitos a deterioração ou destruição da coisa alheia, ou a lesão a pessoa, a fim de remover perigo iminente (estado de necessidade), desde que as circunstâncias o tornem absolutamente necessário e não exceda os limites do indispensável."}];
+<div class="card">
 
-        let answeredQuestions = {};
-        let stats = { correct: 0, wrong: 0 };
+<h2 id="question"></h2>
 
-        function renderQuiz() {
-            const wrapper = document.getElementById('quiz-wrapper');
-            let htmlContent = '';
+<div id="options"></div>
 
-            questionsData.forEach((q, index) => {
-                htmlContent += `
-                    <div class="card" id="card-${index}">
-                        <div class="q-num">Questão ${index + 1}</div>
-                        <div class="q-text">${q.text}</div>
-                        <ul class="options-list" id="list-${index}">
-                            <li class="option-item" data-letter="a" onclick="submitAnswer(${index}, 'a')">${q.options.a}</li>
-                            <li class="option-item" data-letter="b" onclick="submitAnswer(${index}, 'b')">${q.options.b}</li>
-                            <li class="option-item" data-letter="c" onclick="submitAnswer(${index}, 'c')">${q.options.c}</li>
-                            <li class="option-item" data-letter="d" onclick="submitAnswer(${index}, 'd')">${q.options.d}</li>
-                            <li class="option-item" data-letter="e" onclick="submitAnswer(${index}, 'e')">${q.options.e}</li>
-                        </ul>
-                        <div class="explanation-box" id="exp-${index}">
-                            <div class="exp-header" id="exp-title-${index}"></div>
-                            <div style="margin-bottom:8px;"><strong>Gabarito Oficial: Alternativa (${q.correct.toUpperCase()})</strong></div>
-                            <div>${q.just}</div>
-                        </div>
-                    </div>
-                `;
-            });
+<div id="feedback"></div>
 
-            wrapper.innerHTML = htmlContent;
-        }
+<button id="nextBtn" style="display:none">
+Próxima Questão
+</button>
 
-        function submitAnswer(qIndex, selectedLetter) {
-            // Se já respondeu esta questão, ignora novos cliques
-            if (answeredQuestions[qIndex]) return;
-            answeredQuestions[qIndex] = true;
+</div>
 
-            const targetQuestion = questionsData[qIndex];
-            const correctLetter = targetQuestion.correct;
-            const listEl = document.getElementById(`list-${qIndex}`);
-            const optionsEls = listEl.getElementsByClassName('option-item');
-            
-            let selectedEl = null;
-            let correctEl = null;
+<div id="final"></div>
 
-            // Desabilita novas seleções visuais e localiza elementos
-            for (let opt of optionsEls) {
-                opt.classList.add('disabled');
-                const letter = opt.getAttribute('data-letter');
-                if (letter === selectedLetter) selectedEl = opt;
-                if (letter === correctLetter) correctEl = opt;
-            }
+</div>
 
-            const expBox = document.getElementById(`exp-${qIndex}`);
-            const expTitle = document.getElementById(`exp-title-${qIndex}`);
+<script>
 
-            if (selectedLetter === correctLetter) {
-                // Acertou
-                selectedEl.classList.add('correct');
-                stats.correct++;
-                document.getElementById('score-correct').innerText = stats.correct;
-                
-                expTitle.className = "exp-header correct-title";
-                expTitle.innerText = "💥 PARABÉNS, VOCÊ ACERTOU!";
-                expBox.style.borderLeftColor = "#4caf50";
-            } else {
-                // Errou
-                selectedEl.classList.add('wrong');
-                correctEl.classList.add('correct-highlight');
-                stats.wrong++;
-                document.getElementById('score-wrong').innerText = stats.wrong;
-                
-                expTitle.className = "exp-header wrong-title";
-                expTitle.innerText = "❌ ALTERNATIVA INCORRETA";
-                expBox.style.borderLeftColor = "#f44336";
-            }
+const quiz = [
 
-            // Exibe a justificativa imediatamente
-            expBox.style.display = 'block';
-        }
+{
+question:"Segundo o art. 5º, IV da Constituição Federal, a manifestação do pensamento é:",
+options:[
+"livre, sendo permitido o anonimato",
+"livre, sendo vedado o anonimato",
+"livre apenas para jornalistas",
+"livre apenas em ambientes privados"
+],
+answer:1,
+explanations:[
+"Errada. O anonimato é vedado.",
+"Correta. Art. 5º, IV da CF.",
+"Errada. É garantida a todos.",
+"Errada. Também alcança ambientes públicos."
+]
+},
 
-        // Inicializa o simulado
-        renderQuiz();
-    </script>
+{
+question:"A casa é considerada asilo inviolável do indivíduo. É possível nela ingressar sem consentimento:",
+options:[
+"apenas com autorização do prefeito",
+"somente mediante autorização policial",
+"em flagrante delito, desastre, para prestar socorro ou por determinação judicial durante o dia",
+"somente durante a noite"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º, XI.",
+"Errada."
+]
+},
+
+{
+question:"A interrupção da gravidez de feto anencéfalo segundo o STF:",
+options:[
+"configura crime de aborto",
+"depende de autorização do Congresso",
+"não configura conduta criminosa",
+"depende de autorização do Ministério Público"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. ADPF 54.",
+"Errada."
+]
+},
+
+{
+question:"A requisição administrativa de propriedade particular em caso de perigo público:",
+options:[
+"gera indenização obrigatória",
+"gera indenização apenas se houver dano",
+"é proibida pela Constituição",
+"depende de autorização judicial"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XXV.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"São características dos direitos fundamentais:",
+options:[
+"inalienabilidade, imprescritibilidade e universalidade",
+"renunciabilidade absoluta",
+"patrimonialidade",
+"disponibilidade irrestrita"
+],
+answer:0,
+explanations:[
+"Correta.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Os direitos fundamentais de primeira geração relacionam-se principalmente:",
+options:[
+"aos direitos sociais",
+"à liberdade",
+"ao meio ambiente",
+"à solidariedade"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"São exemplos de direitos fundamentais de primeira geração:",
+options:[
+"saúde e educação",
+"transporte e lazer",
+"propriedade, intimidade e liberdade",
+"meio ambiente e paz"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta.",
+"Errada."
+]
+},
+
+{
+question:"Segundo a CF, ninguém será submetido:",
+options:[
+"à prisão administrativa",
+"à tortura ou tratamento desumano",
+"ao devido processo legal",
+"à responsabilização civil"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º III.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O direito à proteção dos dados pessoais:",
+options:[
+"não é direito fundamental",
+"foi incorporado ao art. 5º",
+"é apenas legal",
+"vale apenas para empresas privadas"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º LXXIX.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O brasileiro nato:",
+options:[
+"pode ser extraditado por tráfico",
+"pode ser extraditado por terrorismo",
+"não pode ser extraditado",
+"pode ser extraditado mediante autorização judicial"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta.",
+"Errada."
+]
+},
+
+{
+question:"O brasileiro naturalizado pode ser extraditado:",
+options:[
+"nunca",
+"sempre",
+"em crime comum antes da naturalização ou tráfico ilícito",
+"somente por terrorismo"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º LI.",
+"Errada."
+]
+},
+
+{
+question:"É livre a associação para fins:",
+options:[
+"paramilitares",
+"ilícitos",
+"lícitos",
+"sigilosos"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º XVII.",
+"Errada."
+]
+},
+
+{
+question:"A dissolução compulsória de associação exige:",
+options:[
+"decisão policial",
+"decisão judicial transitada em julgado",
+"decisão do prefeito",
+"decisão administrativa"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XIX.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A suspensão das atividades de associação exige:",
+options:[
+"decisão judicial",
+"decisão do delegado",
+"decisão do MP",
+"decisão do prefeito"
+],
+answer:0,
+explanations:[
+"Correta.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A prisão de qualquer pessoa deve ser comunicada:",
+options:[
+"somente ao juiz",
+"somente à família",
+"imediatamente ao juiz e à família",
+"somente ao Ministério Público"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º LXII.",
+"Errada."
+]
+},
+
+{
+question:"O preso será informado:",
+options:[
+"apenas da acusação",
+"de seus direitos, inclusive permanecer calado",
+"somente após audiência",
+"apenas se solicitar"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º LXIII.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"São inadmissíveis no processo:",
+options:[
+"provas testemunhais",
+"provas documentais",
+"provas obtidas por meios ilícitos",
+"provas digitais"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º LVI.",
+"Errada."
+]
+},
+
+{
+question:"A teoria dos frutos da árvore envenenada relaciona-se:",
+options:[
+"à liberdade religiosa",
+"às provas ilícitas por derivação",
+"à liberdade de expressão",
+"à propriedade privada"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o STF, manifestações racistas:",
+options:[
+"estão protegidas pela liberdade de expressão",
+"não são protegidas pela liberdade de expressão",
+"dependem do local",
+"dependem da religião do autor"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o STF, Testemunhas de Jeová maiores e capazes:",
+options:[
+"não podem recusar transfusão",
+"podem recusar transfusão com base na liberdade religiosa",
+"dependem de autorização judicial",
+"dependem do SUS"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+{
+question:"Segundo o STF, o direito ao esquecimento é:",
+options:[
+"plenamente compatível com a Constituição",
+"incompatível com a Constituição Federal",
+"aplicável apenas em matéria penal",
+"aplicável apenas a agentes públicos"
+],
+answer:1,
+explanations:[
+"Errada. O STF rejeitou a tese.",
+"Correta. Tema 786 do STF.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o STF, a publicação de biografias:",
+options:[
+"depende de autorização prévia do biografado",
+"depende de autorização judicial",
+"não depende de autorização prévia",
+"depende de autorização da família"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. ADI 4815.",
+"Errada."
+]
+},
+
+{
+question:"A liberdade de imprensa:",
+options:[
+"não admite críticas a agentes públicos",
+"somente protege jornais impressos",
+"constitui garantia fundamental",
+"depende de autorização estatal"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o STF, a empresa jornalística responde por entrevista ao vivo quando:",
+options:[
+"sempre",
+"nunca",
+"houver dolo ou culpa relevante após a divulgação",
+"somente mediante condenação criminal do entrevistado"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta.",
+"Errada."
+]
+},
+
+{
+question:"A liberdade religiosa assegura:",
+options:[
+"apenas o direito de possuir religião",
+"apenas cultos privados",
+"liberdade de crença, culto e liturgia",
+"somente religiões reconhecidas pelo Estado"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º VI.",
+"Errada."
+]
+},
+
+{
+question:"A assistência religiosa é assegurada:",
+options:[
+"apenas em presídios",
+"apenas em hospitais públicos",
+"em entidades civis e militares de internação coletiva",
+"somente mediante autorização judicial"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º VII.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o STF, o sacrifício ritual de animais em cultos de matriz africana:",
+options:[
+"é inconstitucional",
+"é constitucional quando sem crueldade excessiva",
+"é crime ambiental",
+"depende de autorização municipal"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A vacinação obrigatória de menores:",
+options:[
+"foi considerada inconstitucional",
+"viola a liberdade religiosa",
+"foi considerada constitucional pelo STF",
+"depende da vontade exclusiva dos pais"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o STF, a Marcha da Maconha:",
+options:[
+"constitui apologia ao crime",
+"é protegida pela liberdade de reunião e expressão",
+"é proibida em locais públicos",
+"depende de autorização judicial"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O direito de reunião exige:",
+options:[
+"autorização prévia",
+"licença municipal",
+"prévio aviso à autoridade competente",
+"autorização judicial"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º XVI.",
+"Errada."
+]
+},
+
+{
+question:"Todos podem reunir-se:",
+options:[
+"pacificamente e sem armas",
+"com armas registradas",
+"somente em locais fechados",
+"apenas mediante autorização"
+],
+answer:0,
+explanations:[
+"Correta.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O direito de petição é exercido:",
+options:[
+"mediante pagamento obrigatório",
+"gratuitamente",
+"somente por advogado",
+"somente por brasileiro nato"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A obtenção de certidões para defesa de direitos:",
+options:[
+"depende de taxa",
+"é gratuita",
+"depende de advogado",
+"depende de autorização judicial"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XXXIV.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O princípio da inafastabilidade da jurisdição significa que:",
+options:[
+"todo processo deve ser gratuito",
+"a lei não excluirá da apreciação do Judiciário lesão ou ameaça a direito",
+"somente o STF pode julgar direitos fundamentais",
+"nenhuma decisão administrativa pode ser revista"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XXXV.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A lei penal:",
+options:[
+"sempre retroage",
+"nunca retroage",
+"retroage apenas para beneficiar o réu",
+"retroage apenas em crimes hediondos"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º XL.",
+"Errada."
+]
+},
+
+{
+question:"A prática do racismo é crime:",
+options:[
+"afiançável e prescritível",
+"inafiançável e imprescritível",
+"somente imprescritível",
+"somente inafiançável"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XLII.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A ação de grupos armados contra a ordem constitucional é crime:",
+options:[
+"afiançável",
+"imprescritível e inafiançável",
+"de menor potencial ofensivo",
+"dependente de representação"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XLIV.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A pena não passará da pessoa do condenado, porém:",
+options:[
+"nenhuma obrigação alcança sucessores",
+"a obrigação de reparar danos pode atingir sucessores até o limite da herança",
+"os sucessores respondem criminalmente",
+"a pena de prisão transmite-se aos herdeiros"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XLV.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Constitui espécie de pena admitida pela Constituição:",
+options:[
+"prisão perpétua",
+"banimento",
+"trabalho forçado",
+"prestação social alternativa"
+],
+answer:3,
+explanations:[
+"Errada.",
+"Errada.",
+"Errada.",
+"Correta. Art. 5º XLVI."
+]
+},
+
+{
+question:"São vedadas pela Constituição:",
+options:[
+"penas restritivas de direitos",
+"penas de multa",
+"penas de morte em qualquer hipótese",
+"penas de caráter perpétuo"
+],
+answer:3,
+explanations:[
+"Errada.",
+"Errada. Há exceção em caso de guerra declarada.",
+"Errada.",
+"Correta. Art. 5º XLVII."
+]
+},
+
+{
+question:"O Habeas Corpus é cabível quando:",
+options:[
+"houver ameaça ou violação à liberdade de locomoção",
+"houver violação ao patrimônio público",
+"houver violação de dados pessoais",
+"houver direito líquido e certo não amparado por HC"
+],
+answer:0,
+explanations:[
+"Correta. Art. 5º, LXVIII.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O Habeas Corpus pode ser impetrado:",
+options:[
+"apenas por advogado",
+"somente pelo Ministério Público",
+"por qualquer pessoa",
+"somente pelo preso"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta.",
+"Errada."
+]
+},
+
+{
+question:"O Habeas Data serve para:",
+options:[
+"proteger liberdade de locomoção",
+"obter ou retificar informações pessoais em bancos de dados",
+"anular prisão ilegal",
+"proteger patrimônio público"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º, LXXII.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O Mandado de Segurança protege:",
+options:[
+"direito líquido e certo não amparado por HC ou HD",
+"liberdade de locomoção",
+"apenas direitos políticos",
+"somente interesses coletivos"
+],
+answer:0,
+explanations:[
+"Correta.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O Mandado de Segurança Coletivo pode ser impetrado por:",
+options:[
+"partido político com representação no Congresso Nacional",
+"qualquer cidadão",
+"qualquer empresa",
+"somente sindicatos"
+],
+answer:0,
+explanations:[
+"Correta. Art. 5º, LXX.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O Mandado de Injunção é cabível quando:",
+options:[
+"falta norma regulamentadora que inviabilize direito constitucional",
+"há prisão ilegal",
+"há abuso de autoridade policial",
+"há violação patrimonial"
+],
+answer:0,
+explanations:[
+"Correta. Art. 5º, LXXI.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A Ação Popular pode ser proposta por:",
+options:[
+"qualquer cidadão",
+"qualquer brasileiro maior de 16 anos",
+"cidadão em pleno gozo dos direitos políticos",
+"qualquer eleitor estrangeiro residente"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º, LXXIII.",
+"Errada."
+]
+},
+
+{
+question:"A Ação Popular visa anular ato lesivo:",
+options:[
+"ao patrimônio público, moralidade administrativa, meio ambiente e patrimônio histórico-cultural",
+"somente ao patrimônio público",
+"somente ao meio ambiente",
+"somente à moralidade administrativa"
+],
+answer:0,
+explanations:[
+"Correta.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"São gratuitos:",
+options:[
+"Habeas Corpus e Habeas Data",
+"Mandado de Segurança e Habeas Corpus",
+"Ação Popular e Mandado de Segurança",
+"todos os remédios constitucionais"
+],
+answer:0,
+explanations:[
+"Correta. Art. 5º, LXXVII.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O preso tem direito:",
+options:[
+"à identificação dos responsáveis por sua prisão",
+"apenas ao silêncio",
+"somente à visita familiar",
+"apenas ao advogado"
+],
+answer:0,
+explanations:[
+"Correta. Art. 5º, LXIV.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Ninguém será considerado culpado:",
+options:[
+"até a denúncia",
+"até a sentença de primeiro grau",
+"até o trânsito em julgado",
+"até a prisão preventiva"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º, LVII.",
+"Errada."
+]
+},
+
+{
+question:"A garantia do devido processo legal está prevista no inciso:",
+options:[
+"LIV",
+"LV",
+"LVI",
+"LX"
+],
+answer:0,
+explanations:[
+"Correta.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Aos litigantes são assegurados:",
+options:[
+"apenas defesa técnica",
+"apenas contraditório",
+"contraditório e ampla defesa",
+"somente recursos judiciais"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º, LV.",
+"Errada."
+]
+},
+
+{
+question:"Segundo a CF, são inadmissíveis:",
+options:[
+"provas testemunhais",
+"provas emprestadas",
+"provas ilícitas",
+"provas digitais"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º, LVI.",
+"Errada."
+]
+},
+
+{
+question:"A gravação ambiental realizada por um dos interlocutores, segundo STF/STJ:",
+options:[
+"é ilícita por ausência de autorização judicial",
+"é lícita em regra",
+"somente é válida em ação civil",
+"é sempre nula"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Tema recorrente em provas e jurisprudência.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O Estado indenizará o condenado por:",
+options:[
+"erro judiciário e prisão além do tempo fixado",
+"somente erro judiciário",
+"somente prisão ilegal",
+"nenhuma hipótese"
+],
+answer:0,
+explanations:[
+"Correta. Art. 5º, LXXV.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A razoável duração do processo é garantia:",
+options:[
+"apenas judicial",
+"apenas administrativa",
+"judicial e administrativa",
+"somente penal"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º, LXXVIII.",
+"Errada."
+]
+},
+
+{
+question:"A proteção de dados pessoais foi expressamente incluída no art. 5º pela:",
+options:[
+"EC 45",
+"EC 115",
+"EC 103",
+"EC 132"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o STF, candidato em concurso público pode ser eliminado apenas por responder a ação penal em curso?",
+options:[
+"Sim",
+"Não",
+"Somente em cargos policiais",
+"Somente mediante decisão administrativa"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Presunção de inocência.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o STF, limite de idade em concurso público:",
+options:[
+"é sempre inconstitucional",
+"é constitucional quando previsto em lei e compatível com as atribuições do cargo",
+"depende apenas do edital",
+"é livremente fixado pela administração"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A liberdade de consciência e de crença é:",
+options:[
+"relativa apenas aos brasileiros",
+"garantida pela Constituição Federal",
+"limitada às religiões registradas",
+"direito apenas coletivo"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º, VI.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"É assegurado o livre exercício:",
+options:[
+"somente da crença religiosa",
+"dos cultos religiosos e proteção aos locais de culto",
+"somente em templos oficiais",
+"apenas mediante autorização estatal"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Segundo a Constituição, ninguém será privado de direitos por motivo de:",
+options:[
+"crença religiosa ou convicção filosófica ou política",
+"orientação profissional",
+"estado civil",
+"escolaridade"
+],
+answer:0,
+explanations:[
+"Correta. Art. 5º VIII.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o STF, paciente adulto Testemunha de Jeová:",
+options:[
+"não pode recusar tratamento",
+"pode recusar transfusão por autonomia e liberdade religiosa",
+"depende de autorização judicial",
+"depende de autorização da família"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A intimidade, vida privada, honra e imagem são:",
+options:[
+"direitos indisponíveis sem proteção constitucional",
+"invioláveis, com direito à indenização",
+"direitos apenas civis",
+"direitos apenas patrimoniais"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º X.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A utilização indevida da imagem de pessoa para fins publicitários:",
+options:[
+"não gera indenização",
+"gera proteção constitucional e indenização",
+"é livre se em local público",
+"depende apenas do Código Civil"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O sigilo das comunicações telefônicas pode ser quebrado:",
+options:[
+"por qualquer autoridade policial",
+"por ordem judicial para investigação criminal ou instrução processual penal",
+"por decisão administrativa",
+"nunca"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XII.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A proteção dos dados pessoais possui status de:",
+options:[
+"direito administrativo",
+"direito fundamental",
+"direito infraconstitucional apenas",
+"garantia empresarial"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O acesso à informação é garantido:",
+options:[
+"sem qualquer exceção",
+"ressalvado o sigilo imprescindível à segurança da sociedade e do Estado",
+"somente aos brasileiros",
+"apenas mediante advogado"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XXXIII.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"É assegurado o sigilo da fonte:",
+options:[
+"apenas para jornalistas concursados",
+"quando necessário ao exercício profissional",
+"somente mediante autorização judicial",
+"nunca"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XIV.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O racismo constitui crime:",
+options:[
+"inafiançável e imprescritível",
+"afiançável e imprescritível",
+"inafiançável e prescritível",
+"de menor potencial ofensivo"
+],
+answer:0,
+explanations:[
+"Correta.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A prática da tortura é considerada:",
+options:[
+"crime comum",
+"crime equiparado a hediondo",
+"contravenção penal",
+"infração administrativa"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A lei considerará crimes inafiançáveis e insuscetíveis de graça ou anistia:",
+options:[
+"racismo apenas",
+"tortura, tráfico ilícito, terrorismo e crimes hediondos",
+"apenas terrorismo",
+"apenas tráfico"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XLIII.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A ação de grupos armados contra a ordem constitucional e o Estado Democrático é:",
+options:[
+"crime político comum",
+"crime imprescritível e inafiançável",
+"contravenção",
+"crime afiançável"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XLIV.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"A propriedade atenderá:",
+options:[
+"à vontade exclusiva do proprietário",
+"à sua função social",
+"às normas municipais apenas",
+"somente ao interesse econômico"
+],
+answer:1,
+explanations:[
+"Errada.",
+"Correta. Art. 5º XXIII.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"O Estado promoverá a defesa:",
+options:[
+"do consumidor",
+"apenas do contribuinte",
+"somente do servidor público",
+"apenas do empresário"
+],
+answer:0,
+explanations:[
+"Correta. Art. 5º XXXII.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Estrangeiros residentes no Brasil possuem direitos fundamentais previstos no art. 5º?",
+options:[
+"Não",
+"Somente direitos civis",
+"Sim",
+"Somente direitos penais"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Caput do Art. 5º.",
+"Errada."
+]
+},
+
+{
+question:"O princípio da igualdade previsto no caput do art. 5º estabelece que:",
+options:[
+"todos são iguais perante a lei",
+"somente brasileiros são iguais perante a lei",
+"apenas homens possuem igualdade plena",
+"a igualdade é apenas formal"
+],
+answer:0,
+explanations:[
+"Correta.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+},
+
+{
+question:"Homens e mulheres são iguais:",
+options:[
+"apenas em direitos políticos",
+"apenas em direitos civis",
+"em direitos e obrigações",
+"somente perante a Justiça"
+],
+answer:2,
+explanations:[
+"Errada.",
+"Errada.",
+"Correta. Art. 5º I.",
+"Errada."
+]
+},
+
+{
+question:"Segundo o art. 5º, a lei punirá:",
+options:[
+"qualquer discriminação atentatória dos direitos e liberdades fundamentais",
+"somente discriminação racial",
+"somente discriminação religiosa",
+"apenas discriminação política"
+],
+answer:0,
+explanations:[
+"Correta. Art. 5º XLI.",
+"Errada.",
+"Errada.",
+"Errada."
+]
+}
+
+
+];
+
+let current=0;
+let hits=0;
+let miss=0;
+
+const q=document.getElementById("question");
+const options=document.getElementById("options");
+const feedback=document.getElementById("feedback");
+const next=document.getElementById("nextBtn");
+
+function loadQuestion(){
+
+let item=quiz[current];
+
+q.innerText=(current+1)+". "+item.question;
+
+options.innerHTML="";
+feedback.style.display="none";
+next.style.display="none";
+
+item.options.forEach((op,index)=>{
+
+let btn=document.createElement("button");
+
+btn.className="option";
+btn.innerText=op;
+
+btn.onclick=()=>check(index);
+
+options.appendChild(btn);
+
+});
+
+updateBar();
+
+}
+
+function check(choice){
+
+let item=quiz[current];
+
+let btns=document.querySelectorAll(".option");
+
+btns.forEach(b=>b.disabled=true);
+
+if(choice===item.answer){
+
+btns[choice].classList.add("correct");
+
+hits++;
+
+document.getElementById("hits").innerText=hits;
+
+feedback.innerHTML=
+"<h3>✅ Correto</h3><p>"+
+item.explanations[choice]+
+"</p>";
+
+}else{
+
+btns[choice].classList.add("wrong");
+btns[item.answer].classList.add("correct");
+
+miss++;
+
+document.getElementById("miss").innerText=miss;
+
+feedback.innerHTML=
+"<h3>❌ Errado</h3><p>"+
+item.explanations[choice]+
+"</p><br><strong>Resposta correta:</strong> "+
+item.options[item.answer]+
+"<br><br>"+
+item.explanations[item.answer];
+
+}
+
+feedback.style.display="block";
+next.style.display="block";
+
+}
+
+next.onclick=()=>{
+
+current++;
+
+if(current>=quiz.length){
+
+finish();
+
+}else{
+
+loadQuestion();
+
+}
+
+};
+
+function updateBar(){
+
+let pct=(current/quiz.length)*100;
+
+document.getElementById("bar").style.width=pct+"%";
+
+}
+
+function finish(){
+
+document.querySelector(".card").style.display="none";
+
+let total=hits+miss;
+
+let score=((hits/total)*100).toFixed(1);
+
+document.getElementById("final").innerHTML=
+`
+<div class="card result">
+<h2>Resultado Final</h2>
+<p>Acertos: ${hits}</p>
+<p>Erros: ${miss}</p>
+<p>Aproveitamento: ${score}%</p>
+</div>
+`;
+
+}
+
+loadQuestion();
+</script>
+
 </body>
 </html>
