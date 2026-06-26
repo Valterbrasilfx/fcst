@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade de Ética - Foco em Questões Subjetivas</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-light: #ffffff;
+            --primary: #e50914;
+            --primary-hover: #b80710;
+            --success: #1db954;
+            --error: #eb1c24;
+            --accent: #38b6ff;
+            --border-color: #333333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--text-light);
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-info {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        /* Dashboard de Pontuação */
+        .scoreboard {
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .score-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .score-item:not(:last-child) {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .score-val {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .score-val.correct { color: var(--success); }
+        .score-val.incorrect { color: var(--error); }
+        .score-val.average { color: var(--accent); }
+
+        /* Cards das Questões */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card.subjetiva {
+            border-top: 3px solid var(--accent);
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        /* Elementos Subjetivos */
+        textarea {
+            width: 100%;
+            height: 120px;
+            background-color: #171717;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-color);
+            padding: 12px;
+            box-sizing: border-box;
+            resize: vertical;
+            font-family: inherit;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn {
+            background-color: #262626;
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            background-color: #2d2d2d;
+        }
+
+        .discursive-feedback {
+            margin-top: 20px;
+            background-color: #171717;
+            border-radius: 6px;
+            padding: 20px;
+            display: none;
+            border: 1px dashed var(--border-color);
+        }
+
+        .gabarito-header {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        /* Checklist de Autoavaliação */
+        .checklist-box {
+            background-color: #222;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .checklist-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #ccc;
+            text-transform: uppercase;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .checklist-item input {
+            margin-right: 10px;
+            accent-color: var(--success);
+            transform: scale(1.1);
+        }
+
+        /* Objetivas */
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-item {
+            background-color: #262626;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-item:hover:not(.disabled) {
+            border-color: var(--primary);
+        }
+
+        .option-item.selected-correct {
+            background-color: rgba(29, 185, 84, 0.15);
+            border-color: var(--success);
+        }
+
+        .option-item.selected-incorrect {
+            background-color: rgba(235, 28, 36, 0.15);
+            border-color: var(--error);
+        }
+
+        .option-item.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .feedback.correct { background-color: rgba(29, 185, 84, 0.1); border-left: 4px solid var(--success); color: #a7f3d0; }
+        .feedback.incorrect { background-color: rgba(235, 28, 36, 0.1); border-left: 4px solid var(--error); color: #fca5a5; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Atividade de Ética Profissional</h1>
+        <div class="meta-info">Foco em Desenvolvimento Subjetivo | Assunto: Incompatibilidade e Impedimentos[cite: 3]</div>
+    </header>
+
+    <!-- Painel Geral -->
+    <div class="scoreboard">
+        <div class="score-item">
+            <div>Critérios Subjetivos Cumpridos</div>
+            <div id="sub-criteria-count" class="score-val correct">0 / 10</div>
+        </div>
+        <div class="score-item">
+            <div>Objetivas (Acertos / Erros)</div>
+            <div id="obj-score" class="score-val" style="color: #fff;">0 / 0</div>
+        </div>
+        <div class="score-item">
+            <div>Média Geral de Pontos</div>
+            <div id="average-score" class="score-val average">0%</div>
+        </div>
+    </div>
+
+    <div class="section-title">Parte I: Questões Subjetivas (Foco e Prática)</div>
+
+    <!-- QUESTÃO 4 -->
+    <div class="card subjetiva">
+        <div class="question-text">
+            4. Crie 3 exemplos de cada cargo ou função que possui incompatibilidade e impedimento com a advocacia e explique-os. (3 de cada).[cite: 3]
+        </div>
+        <textarea placeholder="Escreva sua resposta fundamentada aqui..."></textarea>
+        <button class="btn" onclick="toggleSubjetiva('fb-4')">Analisar Critérios & Ver Gabarito</button>
+        
+        <div class="discursive-feedback" id="fb-4">
+            <div class="checklist-box">
+                <div class="checklist-title">Autoavaliação: Marque o que você incluiu na sua resposta:</div>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Expliquei 3 cargos de Incompatibilidade total (Ex: Juízes, Policiais, Chefes do Executivo).</label>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Expliquei 3 cargos de Impedimento parcial (Ex: Servidores Públicos gerais, Parlamentares comuns).</label>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Mencionei a diferença essencial: incompatibilidade proíbe totalmente; impedimento proíbe apenas parcialmente.</label>
+            </div>
+            <div class="gabarito-header">Gabarito Padrão OAB:</div>
+            <p><strong>Incompatibilidade (Proibição Total - Art. 28, EAOAB):</strong> 1) Magistrados/Juízes (evita favorecimento e influência); 2) Policiais/Segurança Pública (risco de coação e uso de informações confidenciais); 3) Chefes do Executivo como Prefeitos (gestão direta da máquina pública).</p>
+            <p><strong>Impedimento (Proibição Parcial - Art. 30, EAOAB):</strong> 1) Servidores Públicos da administração direta/indireta (impedidos de advogar apenas contra a Fazenda que os remunera); 2) Parlamentares/Legisladores (impedidos contra ou a favor de qualquer ente público ou concessionária); 3) Servidores do Judiciário (impedidos de advogar nos tribunais onde atuam).</p>
+        </div>
+    </div>
+
+    <!-- QUESTÃO 5 -->
+    <div class="card subjetiva">
+        <div class="question-text">
+            5. Explique qual é a única exceção da função/cargo que possui restrição à atuação na advocacia no setor privado?[cite: 3]
+        </div>
+        <textarea placeholder="Escreva sua resposta fundamentada aqui..."></textarea>
+        <button class="btn" onclick="toggleSubjetiva('fb-5')">Analisar Critérios & Ver Gabarito</button>
+        
+        <div class="discursive-feedback" id="fb-5">
+            <div class="checklist-box">
+                <div class="checklist-title">Autoavaliação: Marque o que você incluiu na sua resposta:</div>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Identifiquei corretamente os <strong>Docentes / Professores de Cursos Jurídicos</strong>.</label>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Mencionei a base jurídica do <strong>Parágrafo Único do Artigo 30</strong> do Estatuto da OAB.</label>
+            </div>
+            <div class="gabarito-header">Gabarito Padrão OAB:</div>
+            <p>A única exceção marcante de servidor que se livra do impedimento na advocacia privada contra o poder público são os <strong>Docentes de Cursos Jurídicos</strong>. De acordo com o parágrafo único do Art. 30 do EAOAB, a restrição de litigar contra a Fazenda Pública que o remunera <em>não se aplica</em> aos professores universitários de Direito. Logo, um professor de uma faculdade pública federal pode advogar de forma privada mesmo em ações propostas em face da União.</p>
+        </div>
+    </div>
+
+    <!-- QUESTÃO 6 -->
+    <div class="card subjetiva">
+        <div class="question-text">
+            6. Explique qual o cargo ou função que possui restrição na advocacia com toda administração pública?[cite: 3]
+        </div>
+        <textarea placeholder="Escreva sua resposta fundamentada aqui..."></textarea>
+        <button class="btn" onclick="toggleSubjetiva('fb-6')">Analisar Critérios & Ver Gabarito</button>
+        
+        <div class="discursive-feedback" id="fb-6">
+            <div class="checklist-box">
+                <div class="checklist-title">Autoavaliação: Marque o que você incluiu na sua resposta:</div>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Citei os membros do <strong>Poder Legislativo</strong> (Deputados e Senadores).</label>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Expliquei que o impedimento deles engloba <strong>toda e qualquer esfera</strong> da administração (União, Estados, Municípios e Concessionárias).</label>
+            </div>
+            <div class="gabarito-header">Gabarito Padrão OAB:</div>
+            <p>Os membros do <strong>Poder Legislativo</strong> (Senadores, Deputados Federais, Estaduais e Vereadores) possuem uma restrição muito mais ampla que os servidores comuns. Conforme o Art. 30, II, do EAOAB, eles estão impedidos de exercer a advocacia contra ou a favor de <em>qualquer</em> pessoa jurídica de direito público, empresa pública, sociedade de economia mista ou concessionária de serviço público, abrangendo toda a Administração Pública nacional e limitando sua atuação estritamente à esfera puramente privada (litígios cíveis particulares, direito familiar, etc.).</p>
+        </div>
+    </div>
+
+    <!-- QUESTÃO 7 -->
+    <div class="card subjetiva">
+        <div class="question-text">
+            7. Explique quais atividades policiais sofrem incompatibilidade com a advocacia e se existe alguma que não possui?[cite: 3]
+        </div>
+        <textarea placeholder="Escreva sua resposta fundamentada aqui..."></textarea>
+        <button class="btn" onclick="toggleSubjetiva('fb-7')">Analisar Critérios & Ver Gabarito</button>
+        
+        <div class="discursive-feedback" id="fb-7">
+            <div class="checklist-box">
+                <div class="checklist-title">Autoavaliação: Marque o que você incluiu na sua resposta:</div>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Afirmei que <strong>todas</strong> as corporações policiais geram incompatibilidade (Art. 28, V).</label>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Esclareci expressamente que <strong>não existe exceção</strong>, nem mesmo para quem trabalha no setor puramente burocrático/administrativo da polícia.</label>
+                <label class="checklist-item"><input type="checkbox" onchange="updateSubjetivaScore()" class="sub-check"> Expliquei o motivo: mitigar o risco de uso de poder coercitivo, captação indevida de clientes e quebra de isonomia.</label>
+            </div>
+            <div class="gabarito-header">Gabarito Padrão OAB:</div>
+            <p>Nos termos do Art. 28, inciso V, do Estatuto da OAB, os ocupantes de cargos ou funções vinculados direta ou indiretamente à atividade policial de qualquer natureza sofrem **incompatibilidade absoluta**. Isso abrange Polícia Federal, Civil, Militar, Rodoviária, Penal e Guardas Municipais. <strong>Não existe nenhuma função policial imune</strong>; a jurisprudência pacificada do Conselho Federal da OAB dita que mesmo servidores que desempenham funções exclusivamente administrativas internos dentro das delegacias ou quartéis permanecem incompatíveis, pois estão vinculados ao órgão policial protetor.</p>
+        </div>
+    </div>
+
+    <div class="section-title">Parte II: Questões de Múltipla Escolha</div>
+
+    <!-- QUESTÃO 1 -->
+    <div class="card" id="q1" data-answered="false">
+        <div class="question-text">
+            1. Juarez da Silva, advogado, professor adjunto de Direito Administrativo em determinada Universidade Federal, foi procurado, na qualidade de advogado, por um grupo de funcionários públicos federais que desejavam ajuizar determinada ação contra a União. Pode Juarez aceitar a causa, advogando contra a União?[cite: 3]
+        </div>
+        <ul class="options-list">
+            <li class="option-item" onclick="checkObjective('q1', this, false)">A) Não. Juarez não pode aceitar a causa, pois está impedido de exercer a advocacia contra a Fazenda Pública que o remunera[cite: 3]</li>
+            <li class="option-item" onclick="checkObjective('q1', this, true)">B) Sim. Juarez poderá aceitar a causa, pois o impedimento de exercício da advocacia contra a Fazenda Pública que remunera os advogados que são servidores públicos não inclui a hipótese de docentes de cursos jurídicos.[cite: 3]</li>
+            <li class="option-item" onclick="checkObjective('q1', this, false)">C) Sim. Juarez poderá aceitar a causa, pois não há nenhum tipo de impedimento para o exercício da advocacia por servidores públicos.[cite: 3]</li>
+            <li class="option-item" onclick="checkObjective('q1', this, false)">D) Não. Juarez não poderá aceitar a causa, pois exerce o cargo de professor universitário, que é incompatível com o exercício da advocacia.[cite: 3]</li>
+        </ul>
+        <div class="feedback correct" id="q1-c"><strong>Correto!</strong> O Parágrafo único do Art. 30 exclui os docentes de direito da regra de impedimentos contra o ente federativo que os remunera.</div>
+        <div class="feedback incorrect" id="q1-i"><strong>Incorreto.</strong> Como professor de curso jurídico, ele se enquadra na exceção legal e pode atuar livremente contra a União.</div>
+    </div>
+
+    <!-- QUESTÃO 2 -->
+    <div class="card" id="q2" data-answered="false">
+        <div class="question-text">
+            2- Carolina, Júlia, Bianca e Maria são advogadas. Carolina é servidora estadual não enquadrada em hipótese de incompatibilidade; Júlia está cumprindo suspensão por infração disciplinar; Bianca está licenciada por requerimento próprio justificado; e Maria é servidora federal não enquadrada em hipótese de incompatibilidade. As quatro peticionam, como advogadas, isoladamente e em atos distintos, em ação judicial proposta em face da União. Diante da situação narrada, de acordo com o Estatuto da OAB, são válidos os atos praticados.[cite: 3]
+        </div>
+        <ul class="options-list">
+            <li class="option-item" onclick="checkObjective('q2', this, true)">(A) por Carolina, apenas.[cite: 3]</li>
+            <li class="option-item" onclick="checkObjective('q2', this, false)">(B) por Carolina e Bianca, apenas.[cite: 3]</li>
+            <li class="option-item" onclick="checkObjective('q2', this, false)">(C) por Carolina, Bianca e Maria, apenas.[cite: 3]</li>
+            <li class="option-item" onclick="checkObjective('q2', this, false)">(D) por Carolina, Julia, Bianca e Maria.[cite: 3]</li>
+        </ul>
+        <div class="feedback correct" id="q2-c"><strong>Correto!</strong> Júlia (suspensa) e Bianca (licenciada) não podem advogar. Maria (servidora federal) está impedida de litigar contra a União. Resta apenas Carolina, cujo impedimento é puramente a nível estadual.</div>
+        <div class="feedback incorrect" id="q2-i"><strong>Incorreto.</strong> Lembre-se que Maria (servidora da União) está impedida contra a própria União; suspensas e licenciadas praticam atos nulos. Só Carolina está regular nesse cenário.</div>
+    </div>
+
+    <!-- QUESTÃO 3 -->
+    <div class="card" id="q3" data-answered="false">
+        <div class="question-text">
+            3) Caio é eleito Senador da República e escolhido para compor a mesa do referido órgão legislativo. Como advogado regularmente inscrito nos quadros da OAB, pretende atuar em causa própria e realiza consulta nesse sentido à OAB. Quanto ao tema em foco, de acordo com as regras estatutárias, é correto afirmar que a atuação de Caio.[cite: 3]
+        </div>
+        <ul class="options-list">
+            <li class="option-item" onclick="checkObjective('q3', this, false)">(A) é possível, pois a função exercida caracteriza mero impedimento.[cite: 3]</li>
+            <li class="option-item" onclick="checkObjective('q3', this, true)">(B) não é possível, sendo o caso de incompatibilidade mesmo em causa própria.[cite: 3]</li>
+            <li class="option-item" onclick="checkObjective('q3', this, false)">(C) em causa própria constitui uma exceção aplicável ao caso.[cite: 3]</li>
+            <li class="option-item" onclick="checkObjective('q3', this, false)">(D) poderá ocorrer, nessa situação, mediante autorização especial.[cite: 3]</li>
+        </ul>
+        <div class="feedback correct" id="q3-c"><strong>Correto!</strong> Integrantes da Mesa Diretora do Legislativo entram em regime de Incompatibilidade Total (Art. 28, I), barrando a advocacia inclusive em causa própria (§2º).</div>
+        <div class="feedback incorrect" id="q3-i"><strong>Incorreto.</strong> O fato de Caio estar na Mesa Diretora do órgão muda a restrição de impedimento para Incompatibilidade Absoluta, inválida inclusive para advogar em causa própria.</div>
+    </div>
+</div>
+
+<script>
+    let checkedCriteria = 0;
+    let objCorrect = 0;
+    let objIncorrect = 0;
+    const totalCriteria = 10;
+
+    function toggleSubjetiva(id) {
+        const div = document.getElementById(id);
+        div.style.display = (div.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function updateSubjetivaScore() {
+        const checkboxes = document.querySelectorAll('.sub-check');
+        let count = 0;
+        checkboxes.forEach(box => {
+            if (box.checked) count++;
+        });
+        checkedCriteria = count;
+        document.getElementById('sub-criteria-count').textContent = `${checkedCriteria} / ${totalCriteria}`;
+        calculateAverage();
+    }
+
+    function checkObjective(qId, element, isCorrect) {
+        const card = document.getElementById(qId);
+        if (card.getAttribute('data-answered') === 'true') return;
+        card.setAttribute('data-answered', 'true');
+
+        const options = card.querySelectorAll('.option-item');
+        options.forEach(opt => opt.classList.add('disabled'));
+
+        if (isCorrect) {
+            element.classList.add('selected-correct');
+            document.getElementById(`${qId}-c`).style.display = 'block';
+            objCorrect++;
+        } else {
+            element.classList.add('selected-incorrect');
+            document.getElementById(`${qId}-i`).style.display = 'block';
+            objIncorrect++;
+            
+            options.forEach(opt => {
+                if(opt.textContent.includes('B)') && qId === 'q1') opt.classList.add('selected-correct');
+                if(opt.textContent.includes('(A)') && qId === 'q2') opt.classList.add('selected-correct');
+                if(opt.textContent.includes('(B)') && qId === 'q3') opt.classList.add('selected-correct');
+            });
+        }
+
+        document.getElementById('obj-score').textContent = `${objCorrect} / ${objIncorrect}`;
+        calculateAverage();
+    }
+
+    function calculateAverage() {
+        // Peso das Subjetivas: Cada critério vale 7% da nota (Total 70%)
+        // Peso das Objetivas: Cada acerto vale 10% da nota (Total 30%)
+        let subjetivaPoints = (checkedCriteria / totalCriteria) * 70;
+        let objectivePoints = objCorrect * 10;
+        
+        let totalAverage = Math.round(subjetivaPoints + objectivePoints);
+        if (totalAverage > 100) totalAverage = 100;
+
+        document.getElementById('average-score').textContent = `${totalAverage}%`;
+    }
+</script>
+
+</body>
+</html>
