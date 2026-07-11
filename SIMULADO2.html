@@ -1,455 +1,374 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atividade de Ética - Publicidade Profissional</title>
-    <style>
-        :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --text-light: #ffffff;
-            --primary: #e50914;
-            --primary-hover: #b80710;
-            --success: #1db954;
-            --error: #eb1c24;
-            --border-color: #333333;
-        }
+<meta charset="UTF-8">
+<title>Simulado - Aplicabilidade das Normas Constitucionais</title>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<style>
 
-        .container {
-            width: 100%;
-            max-width: 850px;
-        }
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#eef2f7;
+margin:20px;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 20px;
-        }
+.container{
+max-width:1000px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,.2);
+}
 
-        h1 {
-            color: var(--text-light);
-            margin: 0 0 10px 0;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+h1,h2{
+text-align:center;
+color:#0b3d91;
+}
 
-        .meta-info {
-            color: #aaa;
-            font-size: 0.9rem;
-        }
+.questao{
+margin:20px 0;
+padding:15px;
+border-left:6px solid #0b3d91;
+background:#f8f9fc;
+}
 
-        /* Painel de Pontuação */
-        .scoreboard {
-            display: flex;
-            justify-content: space-between;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 30px;
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
+label{
+display:block;
+padding:5px;
+cursor:pointer;
+}
 
-        .score-item {
-            text-align: center;
-            flex: 1;
-        }
+button{
+padding:12px 25px;
+font-size:18px;
+margin:10px;
+border:none;
+border-radius:8px;
+background:#0b3d91;
+color:white;
+cursor:pointer;
+}
 
-        .score-item:not(:last-child) {
-            border-right: 1px solid var(--border-color);
-        }
+button:hover{
+background:#1359c5;
+}
 
-        .score-val {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--text-light);
-            margin-top: 5px;
-        }
+#resultado{
+display:none;
+margin-top:30px;
+padding:20px;
+background:#eef;
+border-radius:10px;
+font-size:18px;
+}
 
-        .score-val.correct { color: var(--success); }
-        .score-val.incorrect { color: var(--error); }
-        .score-val.average { color: #38b6ff; }
+.correta{
+color:green;
+font-weight:bold;
+}
 
-        /* Cards dos Casos */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+.errada{
+color:red;
+font-weight:bold;
+}
 
-        .case-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 15px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
+.comentario{
+display:none;
+margin-top:10px;
+padding:10px;
+background:#f0f8ff;
+border-radius:8px;
+}
 
-        .case-description {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-bottom: 20px;
-            line-height: 1.5;
-            background-color: #171717;
-            padding: 12px;
-            border-radius: 4px;
-            border-left: 3px solid #666;
-        }
+.barra{
+height:25px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-top:15px;
+}
 
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
+.progresso{
+height:100%;
+width:0%;
+background:green;
+color:white;
+text-align:center;
+line-height:25px;
+font-weight:bold;
+}
 
-        .btn-choice {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid var(--border-color);
-            background-color: #262626;
-            color: var(--text-light);
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-choice:hover:not(.disabled) {
-            background-color: #2d2d2d;
-        }
-
-        .btn-choice.correct-selected {
-            background-color: rgba(29, 185, 84, 0.2);
-            border-color: var(--success);
-            color: var(--success);
-        }
-
-        .btn-choice.incorrect-selected {
-            background-color: rgba(235, 28, 36, 0.2);
-            border-color: var(--error);
-            color: var(--error);
-        }
-
-        .btn-choice.disabled {
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .feedback {
-            padding: 15px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            display: none;
-            margin-top: 15px;
-        }
-
-        .feedback.correct {
-            background-color: rgba(29, 185, 84, 0.1);
-            border-left: 4px solid var(--success);
-            color: #a7f3d0;
-        }
-
-        .feedback.incorrect {
-            background-color: rgba(235, 28, 36, 0.1);
-            border-left: 4px solid var(--error);
-            color: #fca5a5;
-        }
-
-        strong { color: #fff; }
-    </style>
+</style>
 </head>
+
 <body>
 
 <div class="container">
-    <header>
-        <h1>Atividade de Ética Geral e Profissional</h1>
-        <div class="meta-info">Tema: Publicidade Profissional | Professor: Ítalo Lopes | Data: 22/05/2026</div>
-    </header>
 
-    <!-- Painel de Resultados -->
-    <div class="scoreboard">
-        <div class="score-item">
-            <div>Análises Corretas</div>
-            <div id="correct-count" class="score-val correct">0</div>
-        </div>
-        <div class="score-item">
-            <div>Análises Incorretas</div>
-            <div id="incorrect-count" class="score-val incorrect">0</div>
-        </div>
-        <div class="score-item">
-            <div>Aproveitamento</div>
-            <div id="average-score" class="score-val average">0%</div>
-        </div>
-    </div>
+<h1>SIMULADO</h1>
+<h2>Aplicabilidade das Normas Constitucionais</h2>
 
-    <!-- CASO 01 -->
-    <div class="card" id="c1" data-answered="false">
-        <div class="case-title">CASO 01 (REDES SOCIAIS)</div>
-        <div class="case-description">
-            Post patrocinado no Instagram do perfil "advogado_brunopaiva". Texto: "ATUAÇÃO EM TODO O RIO GRANDE DO NORTE. ADVOGADO ESP. EM DIREITO DO TRABALHO. ASSESSORIA JURÍDICA ONLINE E PRESENCIAL. ENVIAR MENSAGEM."
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('c1', this, true)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('c1', this, false)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="c1-fb-correct">
-            <strong>Resposta Correta! (REGULAR)</strong> O Provimento 205/2021 da OAB permitiu expressamente o impulsionamento de conteúdos e posts patrocinados nas redes sociais, desde que não configure captação ativa de clientela ou oferta de serviços agressiva. Indicar especialidade e abrangência geográfica de forma informativa é permitido (Art. 4º, §1º do Prov. 205/21).
-        </div>
-        <div class="feedback incorrect" id="c1-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>REGULAR</strong>. Com o advento do Provimento 205/2021 da OAB, o uso de tráfego pago (posts patrocinados) passou a ser expressamente permitido para fins de publicidade informativa, vedando-se apenas a mercantilização ou o uso de termos estritamente comerciais como "compre já" ou "promoção".
-        </div>
-    </div>
+<form id="quiz"></form>
 
-    <!-- CASO 02 -->
-    <div class="card" id="c2" data-answered="false">
-        <div class="case-title">CASO 02 (REDES SOCIAIS)</div>
-        <div class="case-description">
-            Postagem informativa e técnica do perfil de renomado jurista ("aurylopesjr") compartilhando uma decisão de Habeas Corpus do STJ proferida pelo Min. Rogério Schietti Cruz, detalhando a fundamentação jurídica do caso.
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('c2', this, true)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('c2', this, false)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="c2-fb-correct">
-            <strong>Resposta Correta! (REGULAR)</strong> É a essência da publicidade permitida pela OAB. O Art. 39 do Código de Ética e Disciplina (CED) estabelece que a publicidade deve ter caráter meramente informativo, primando pela discrição e sobriedade. A divulgação de decisões e comentários técnicos atende perfeitamente ao viés educativo da norma.
-        </div>
-        <div class="feedback incorrect" id="c2-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>REGULAR</strong>. A divulgação de informações estritamente jurídicas, jurisprudências e decisões de tribunais sem oferta explícita de serviços cumpre o papel educativo e informativo exigido pelo Código de Ética da OAB.
-        </div>
-    </div>
+<center>
+<button type="button" onclick="corrigir()">Corrigir</button>
+<button type="button" onclick="location.reload()">Refazer</button>
+</center>
 
-    <!-- CASO 03 -->
-    <div class="card" id="c3" data-answered="false">
-        <div class="case-title">CASO 03 (FACHADA ESCRITÓRIO)</div>
-        <div class="case-description">
-            Placa de identificação na fachada física do escritório contendo o termo "ADVOCACIA", o nome da profissional "Kelly Santos", o símbolo da balança da justiça e os números de telefone.
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('c3', this, true)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('c3', this, false)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="c3-fb-correct">
-            <strong>Resposta Correta! (REGULAR)</strong> Fachadas de escritórios físicos são permitidas para identificação do local de trabalho. O uso do nome, a palavra advocacia, símbolos tradicionais da profissão (como a balança) e dados de contato respeitam a sobriedade exigida pelo estatuto e pelo CED, não configurando excesso comercial.
-        </div>
-        <div class="feedback incorrect" id="c3-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>REGULAR</strong>. A identificação visual na sede do escritório é permitida. Ela serve exclusivamente para que os clientes e o público localizem o estabelecimento físico da advogada de forma sóbria.
-        </div>
-    </div>
+<div id="resultado">
 
-    <!-- CASO 04 -->
-    <div class="card" id="c4" data-answered="false">
-        <div class="case-title">CASO 04 (PUBLICIDADE EM VEÍCULO)</div>
-        <div class="case-description">
-            Inscrição adesivada na lateral de um carro (modelo Fusca) com os dizeres: "CH Advogados - Assessoria e Consultoria", seguido por três números de telefones comerciais e o site do escritório.
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('c4', this, false)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('c4', this, true)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="c4-fb-correct">
-            <strong>Resposta Correta! (IRREGULAR)</strong> O Provimento 205/2021 (Art. 6º, I) e o Código de Ética vedam expressamente a utilização de inscrições em veículos, outdoors ou qualquer meio de comunicação de massa móvel. A advocacia não pode ser exposta de forma a assemelhar-se a um comércio ambulante, ferindo a sobriedade da profissão.
-        </div>
-        <div class="feedback incorrect" id="c4-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>IRREGULAR</strong>. É terminantemente proibido vehicular anúncios ou publicidades em automóveis (seja por pintura, adesivos ou plotagem), pois descaracteriza a natureza intelectual e solene da advocacia, assemelhando-se à captação mercantilista de clientela.
-        </div>
-    </div>
+<h2>Resultado</h2>
 
-    <!-- CASO 05 -->
-    <div class="card" id="c5" data-answered="false">
-        <div class="case-title">CASO 05 (DIVULGAÇÃO CONJUNTA)</div>
-        <div class="case-description">
-            Placa comercial única anunciando em conjunto serviços de "Advocacia e Imóveis", listando ramificações do direito (Cível, Trabalhista) ao lado de atividades imobiliárias (Locação, Avaliação, Compra e Venda).
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('c5', this, false)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('c5', this, true)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="c5-fb-correct">
-            <strong>Resposta Correta! (IRREGULAR)</strong> Conforme o Art. 5º do Código de Ética e Disciplina da OAB, o exercício da advocacia é incompatível com o anúncio conjunto de qualquer outra atividade econômica. É expressamente vedada a divulgação de serviços jurídicos associados a imobiliárias, contabilidade, ou despachantes na mesma estrutura publicitária.
-        </div>
-        <div class="feedback incorrect" id="c5-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>IRREGULAR</strong>. O Estatuto proíbe o funcionamento ou divulgação da advocacia de forma conjunta com outra profissão no mesmo espaço ou anúncio, visando impedir a captação cruzada de clientes.
-        </div>
-    </div>
+<p><b>Acertos:</b> <span id="acertos"></span></p>
 
-    <!-- CASO 06 -->
-    <div class="card" id="c6" data-answered="false">
-        <div class="case-title">CASO 06 (OUTDOOR / PAINEL PÚBLICO)</div>
-        <div class="case-description">
-            Painel gigante na rua (Outdoor) com fotos de pessoas comemorando e os dizeres: "Agosto - Mês do Advogado. OAB Paraná. Em defesa de seus direitos sempre".
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('c6', this, true)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('c6', this, false)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="c6-fb-correct">
-            <strong>Resposta Correta! (REGULAR)</strong> Embora o uso de outdoors seja estritamente <strong>proibido para advogados particulares</strong>, a restrição não se aplica às campanhas institucionais promovidas pelas próprias Seccionais da OAB. A publicidade institucional da Ordem em homenagem ao mês do advogado possui natureza estritamente corporativa e de valorização da classe.
-        </div>
-        <div class="feedback incorrect" id="c6-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>REGULAR</strong>. Atenção ao emissor: um advogado individual não pode utilizar outdoors. Contudo, a peça pertence à <strong>instituição OAB</strong>, possuindo caráter comemorativo e institucional coletivo, o que é permitido.
-        </div>
-    </div>
+<p><b>Erros:</b> <span id="erros"></span></p>
 
-    <!-- CASO 07 (REDE SOCIAL - PATROCINADO) -->
-    <div class="card" id="c7" data-answered="false">
-        <div class="case-title">CASO 07 (REDE SOCIAL - STATUS DE ATUAÇÃO)</div>
-        <div class="case-description">
-            Post de Story patrocinado no Instagram de "andredolabela". Texto: "De volta ao escritório em Belo Horizonte. Dia de sessão de julgamento com sustentação oral no TJMG e acompanhar cliente em interrogatório por videoconferência na Polícia Federal em Minas Gerais. #advocaciacriminal"
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('c7', this, true)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('c7', this, false)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="c7-fb-correct">
-            <strong>Resposta Correta! (REGULAR)</strong> O Provimento 205/2021 permite aos advogados a divulgação de sua rotina de trabalho e bastidores profissionais, desde que mantida a sobriedade. Relatar que realizou sustentações orais ou acompanhou atos processuais reais (sem quebrar sigilo e sem ostentação) constitui publicidade ativa informativa lícita.
-        </div>
-        <div class="feedback incorrect" id="c7-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>REGULAR</strong>. Narrar a rotina forense diária, as audiências realizadas e os tribunais frequentados é permitido pelas novas regras de publicidade digital, pois demonstra a atuação real do profissional sem incitação direta ao litígio.
-        </div>
-    </div>
+<p><b>Aproveitamento:</b> <span id="nota"></span></p>
 
-    <!-- CASO 08 -->
-    <div class="card" id="c8" data-answered="false">
-        <div class="case-title">CASO 08 (OSTENTAÇÃO EM REDE SOCIAL)</div>
-        <div class="case-description">
-            Vídeo ou imagens publicadas exibindo maços volumosos de dinheiro em notas, relógios de ouro luxuosos, correntes pesadas e joias caras associadas à atuação profissional.
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('c8', this, false)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('c8', this, true)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="c8-fb-correct">
-            <strong>Resposta Correta! (IRREGULAR)</strong> O Art. 6º do Provimento 205/2021 veda de forma expressa a chamada **publicidade de ostentação**. É proibido associar a imagem do profissional da advocacia à ostentação de bens de luxo, carros esportivos, viagens nababescas ou dinheiro em espécie, por ferir o princípio ético da sobriedade.
-        </div>
-        <div class="feedback incorrect" id="c8-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>IRREGULAR</strong>. A exibição e ostentação de riquezas, luxos ou quantias em dinheiro atreladas ao exercício profissional são punidas eticamente pela OAB por violarem o decoro e rebaixarem a advocacia a uma atividade puramente mercantilista.
-        </div>
-    </div>
+<div class="barra">
+<div class="progresso" id="barra"></div>
+</div>
 
-    <!-- CASO 09 -->
-    <div class="card" id="c9" data-answered="false">
-        <div class="case-title">CASO 09 (FOTO EQUIPE PROFISSIONAL)</div>
-        <div class="case-description">
-            Postagem oficial na rede social de um escritório exibindo a foto formalizada de toda a sua banca de advogados associados, uniformizados com trajes formais em ambiente sóbrio de escritório.
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('c9', this, true)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('c9', this, false)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="c9-fb-correct">
-            <strong>Resposta Correta! (REGULAR)</strong> Fotos de equipe, apresentação dos profissionais e instalações internas do escritório atendem perfeitamente aos requisitos de sobriedade e caráter informativo instituídos pelo Código de Ética e pelo Provimento 205/2021.
-        </div>
-        <div class="feedback incorrect" id="c9-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>REGULAR</strong>. Apresentar os membros que integram a sociedade de advogados é um direito de publicidade informativa básico e estimulado pela OAB, desde que feito de modo profissional e respeitoso.
-        </div>
-    </div>
+</div>
 
-    <!-- CASO 10 -->
-    <div class="card" id="u10" data-answered="false">
-        <div class="case-title">CASO 10 (ENTREVISTA À TV NAS REDES)</div>
-        <div class="case-description">
-            Postagem de trecho de vídeo nas redes sociais onde o advogado concede uma entrevista jornalística a uma emissora de TV aberta, prestando esclarecimentos técnicos sobre legislação.
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('u10', this, true)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('u10', this, false)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="u10-fb-correct">
-            <strong>Resposta Correta! (REGULAR)</strong> O advogado pode participar e divulgar entrevistas na TV, rádio ou internet, desde que os esclarecimentos possuam finalidade meramente ilustrativa, educacional ou informativa, abstendo-se de fazer captação de clientela ou autopromoção desmedida (Art. 43 do CED).
-        </div>
-        <div class="feedback incorrect" id="u10-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>REGULAR</strong>. A participação em mídias tradicionais é permitida, e a republicação do conteúdo nas redes próprias também é lícita, contanto que o conteúdo se restrinja à análise técnica da lei, sem divulgar contatos profissionais ou incitar ações judiciais.
-        </div>
-    </div>
-
-    <!-- CASO 11 -->
-    <div class="card" id="u11" data-answered="false">
-        <div class="case-title">CASO 11 (PROPAGANDA EM CARRO DE SOM)</div>
-        <div class="case-description">
-            Postagem de vídeo nas redes sociais mostrando um veículo com amplificadores de som automotivo (carro de som) trafegando pelas ruas fazendo propaganda explícita dos serviços jurídicos do escritório.
-        </div>
-        <div class="action-buttons">
-            <button class="btn-choice" onclick="evaluateCase('u11', this, false)">REGULAR</button>
-            <button class="btn-choice" onclick="evaluateCase('u11', this, true)">IRREGULAR</button>
-        </div>
-        <div class="feedback correct" id="u11-fb-correct">
-            <strong>Resposta Correta! (IRREGULAR)</strong> O uso de carros de som ou alto-falantes para divulgar serviços advocatícios é uma das violações mais graves às regras de publicidade (vedação expressa no Art. 40 do CED). A prática configura explícita mercantilização e captação inadequada, expondo a profissão ao ridículo e ao escárnio público.
-        </div>
-        <div class="feedback incorrect" id="u11-fb-incorrect">
-            <strong>Resposta Incorreta.</strong> O caso é <strong>IRREGULAR</strong>. O Código de Ética proíbe sumariamente a utilização de meios de propaganda comercial de massa agressivos ou sonoros como carros de som, panfletagem de rua e anúncios em rádio e televisão aberta para captação de clientela.
-        </div>
-    </div>
 </div>
 
 <script>
-    let correctCount = 0;
-    let incorrectCount = 0;
 
-    function evaluateCase(cardId, selectedButton, isCorrectChoice) {
-        const card = document.getElementById(cardId);
-        
-        // Verifica se a questão já foi respondida
-        if (card.getAttribute('data-answered') === 'true') return;
-        card.setAttribute('data-answered', 'true');
+const questoes=[
 
-        const buttons = card.querySelectorAll('.btn-choice');
-        buttons.forEach(btn => btn.classList.add('disabled'));
+{
+p:"1. Quem elaborou a classificação da aplicabilidade das normas constitucionais?",
+o:["Michel Temer","José Afonso da Silva","Alexandre de Moraes","Pedro Lenza"],
+c:1,
+j:"A classificação em normas de eficácia plena, contida e limitada foi desenvolvida por José Afonso da Silva."
+},
 
-        // Se o usuário escolheu o botão que bate com o gabarito
-        if (isCorrectChoice) {
-            selectedButton.classList.add('correct-selected');
-            document.getElementById(`${cardId}-fb-correct`).style.display = 'block';
-            correctCount++;
-        } else {
-            selectedButton.classList.add('incorrect-selected');
-            document.getElementById(`${cardId}-fb-incorrect`).style.display = 'block';
-            incorrectCount++;
-            
-            // Ilumina o botão que era o correto para correção visual
-            buttons.forEach(btn => {
-                if (btn !== selectedButton) {
-                    btn.classList.add('correct-selected');
-                }
-            });
-        }
+{
+p:"2. Quantos tipos de eficácia existem nessa classificação?",
+o:["2","3","4","5"],
+c:1,
+j:"São três: plena, contida e limitada."
+},
 
-        updateScoreboard();
-    }
+{
+p:"3. A norma de eficácia plena possui:",
+o:["Aplicação imediata","Aplicação futura","Aplicação parcial","Nenhuma eficácia"],
+c:0,
+j:"Ela produz todos os seus efeitos desde a promulgação da Constituição."
+},
 
-    function updateScoreboard() {
-        document.getElementById('correct-count').textContent = correctCount;
-        document.getElementById('incorrect-count').textContent = incorrectCount;
-        
-        const total = correctCount + incorrectCount;
-        if (total > 0) {
-            const percentage = Math.round((correctCount / total) * 100);
-            document.getElementById('average-score').textContent = `${percentage}%`;
-        }
-    }
+{
+p:"4. A norma de eficácia plena depende de lei regulamentadora?",
+o:["Sempre","Nunca","Às vezes","Somente por decreto"],
+c:1,
+j:"Não depende de lei para produzir seus efeitos."
+},
+
+{
+p:"5. A norma de eficácia contida:",
+o:["Nunca produz efeitos","Depende sempre de lei","Tem aplicação imediata","Só vale após regulamentação"],
+c:2,
+j:"Ela nasce produzindo efeitos imediatamente."
+},
+
+{
+p:"6. A principal característica da eficácia contida é:",
+o:["Pode ser restringida por lei","Nunca pode sofrer restrições","Depende de lei para existir","É revogada automaticamente"],
+c:0,
+j:"A lei pode limitar o exercício do direito."
+},
+
+{
+p:"7. O art. 5º, XIII da Constituição é exemplo de norma:",
+o:["Plena","Limitada","Contida","Histórica"],
+c:2,
+j:"A liberdade profissional pode sofrer restrições legais."
+},
+
+{
+p:"8. A exigência de diploma para determinadas profissões decorre de:",
+o:["Norma plena","Norma contida","Norma limitada","Norma histórica"],
+c:1,
+j:"A lei restringe o exercício da profissão."
+},
+
+{
+p:"9. A norma de eficácia limitada:",
+o:["Produz todos os efeitos imediatamente","Depende de regulamentação","Nunca produz efeitos","É autoexecutável"],
+c:1,
+j:"Necessita de lei para produzir plenamente seus efeitos."
+},
+
+{
+p:"10. Enquanto não houver regulamentação, a eficácia da norma limitada é:",
+o:["Plena","Reduzida","Inexistente","Absoluta"],
+c:1,
+j:"Ela não produz plenamente todos os efeitos previstos."
+},
+
+{
+p:"11. Qual norma precisa de lei para produzir plenamente seus efeitos?",
+o:["Plena","Contida","Limitada","Escrita"],
+c:2,
+j:"A eficácia limitada depende de atuação do legislador."
+},
+
+{
+p:"12. Qual possui aplicação imediata e não depende de lei?",
+o:["Limitada","Plena","Contida","Nenhuma"],
+c:1,
+j:"A eficácia plena é autoaplicável."
+},
+
+{
+p:"13. A eficácia contida pode ser restringida por:",
+o:["Lei","Costume","Jurisprudência apenas","Doutrina"],
+c:0,
+j:"A Constituição autoriza restrições legais."
+},
+
+{
+p:"14. A palavra que melhor resume a eficácia plena é:",
+o:["Regulamentação","Completa","Restrita","Parcial"],
+c:1,
+j:"A norma plena já nasce completa."
+},
+
+{
+p:"15. A palavra que resume a eficácia limitada é:",
+o:["Autoaplicável","Completa","Regulamentação","Imediata"],
+c:2,
+j:"Ela depende de regulamentação."
+},
+
+{
+p:"16. A eficácia contida é completa, porém:",
+o:["Pode ser reduzida","Nunca muda","Depende de emenda","É provisória"],
+c:0,
+j:"Pode sofrer limitações previstas em lei."
+},
+
+{
+p:"17. Qual alternativa está correta?",
+o:[
+"Plena depende de lei",
+"Limitada é imediata",
+"Contida pode sofrer restrições legais",
+"Nenhuma"
+],
+c:2,
+j:"A característica principal da eficácia contida é admitir restrições legais."
+},
+
+{
+p:"18. Direitos cuja implementação depende do legislador correspondem a normas:",
+o:["Plenas","Contidas","Limitadas","Flexíveis"],
+c:2,
+j:"Sem regulamentação, a eficácia é incompleta."
+},
+
+{
+p:"19. Complete: Plena → _______, Contida → ________, Limitada → ________.",
+o:[
+"Completa / pode restringir / depende de lei",
+"Depende de lei / completa / restrita",
+"Limitada / plena / contida",
+"Imediata / histórica / escrita"
+],
+c:0,
+j:"Esse é o resumo clássico cobrado em concursos."
+},
+
+{
+p:"20. Em provas, a principal dica para diferenciar as normas é:",
+o:[
+"Observar se depende de regulamentação",
+"Decorar o número do artigo",
+"Verificar o tamanho da norma",
+"Identificar a origem da Constituição"
+],
+c:0,
+j:"A necessidade (ou não) de regulamentação é o principal critério."
+}
+
+];
+
+const quiz=document.getElementById("quiz");
+
+questoes.forEach((q,i)=>{
+
+let html=`<div class="questao"><h3>${q.p}</h3>`;
+
+q.o.forEach((op,j)=>{
+html+=`
+<label>
+<input type="radio" name="q${i}" value="${j}">
+${String.fromCharCode(65+j)}) ${op}
+</label>
+`;
+});
+
+html+=`<div class="comentario" id="c${i}"></div></div>`;
+
+quiz.innerHTML+=html;
+
+});
+
+function corrigir(){
+
+let acertos=0;
+let erros=0;
+
+questoes.forEach((q,i)=>{
+
+let resp=document.querySelector(`input[name=q${i}]:checked`);
+let div=document.getElementById("c"+i);
+
+div.style.display="block";
+
+if(resp && Number(resp.value)===q.c){
+
+acertos++;
+
+div.innerHTML=`<span class="correta">✔ Correto!</span><br>${q.j}`;
+
+}else{
+
+erros++;
+
+div.innerHTML=`<span class="errada">✘ Errado.</span><br>
+Resposta correta: <b>${String.fromCharCode(65+q.c)}</b><br>${q.j}`;
+
+}
+
+});
+
+let nota=((acertos/questoes.length)*100).toFixed(1);
+
+document.getElementById("resultado").style.display="block";
+document.getElementById("acertos").innerHTML=acertos;
+document.getElementById("erros").innerHTML=erros;
+document.getElementById("nota").innerHTML=nota+"%";
+
+let barra=document.getElementById("barra");
+
+barra.style.width=nota+"%";
+barra.innerHTML=nota+"%";
+
+if(nota>=80){
+barra.style.background="green";
+}else if(nota>=60){
+barra.style.background="orange";
+}else{
+barra.style.background="red";
+}
+
+window.scrollTo(0,document.body.scrollHeight);
+
+}
+
 </script>
 
 </body>
