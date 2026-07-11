@@ -1,493 +1,313 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulado Avançado - Ética Profissional (OAB)</title>
-    <style>
-        :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --text-light: #ffffff;
-            --primary: #e50914;
-            --primary-hover: #b80710;
-            --success: #1db954;
-            --error: #eb1c24;
-            --accent: #38b6ff;
-            --border-color: #333333;
-        }
+<meta charset="UTF-8">
+<title>Simulado de Revisão - Direito Constitucional</title>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<style>
+body{
+font-family:Arial;
+background:#eef2f7;
+margin:20px;
+}
 
-        .container {
-            width: 100%;
-            max-width: 850px;
-        }
+.container{
+max-width:950px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 20px;
-        }
+.questao{
+margin:20px 0;
+padding:15px;
+background:#f8f8f8;
+border-left:5px solid #003366;
+}
 
-        h1 {
-            color: var(--text-light);
-            margin: 0 0 10px 0;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+button{
+padding:12px 25px;
+font-size:18px;
+margin:10px;
+cursor:pointer;
+background:#003366;
+color:white;
+border:none;
+border-radius:8px;
+}
 
-        .meta-info {
-            color: #aaa;
-            font-size: 0.9rem;
-        }
+button:hover{
+background:#0055aa;
+}
 
-        .section-title {
-            color: var(--accent);
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            margin: 40px 0 15px 0;
-            letter-spacing: 1px;
-            border-left: 4px solid var(--accent);
-            padding-left: 10px;
-        }
+.comentario{
+display:none;
+margin-top:10px;
+padding:10px;
+background:#eef;
+border-radius:6px;
+}
 
-        /* Dashboard de Pontuação Estático/Fixo */
-        .scoreboard {
-            display: flex;
-            justify-content: space-between;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 30px;
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
+.correta{
+color:green;
+font-weight:bold;
+}
 
-        .score-item {
-            text-align: center;
-            flex: 1;
-        }
+.errada{
+color:red;
+font-weight:bold;
+}
 
-        .score-item:not(:last-child) {
-            border-right: 1px solid var(--border-color);
-        }
+#resultado{
+display:none;
+padding:20px;
+margin-top:20px;
+background:#ddeeff;
+border-radius:10px;
+font-size:20px;
+}
+</style>
 
-        .score-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: #aaa;
-        }
-
-        .score-val {
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: var(--text-light);
-            margin-top: 5px;
-        }
-
-        .score-val.correct { color: var(--success); }
-        .score-val.average { color: var(--accent); }
-
-        /* Cards das Questões */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .card.subjetiva {
-            border-top: 3px solid var(--accent);
-        }
-
-        .question-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #2d2d2d;
-            padding-bottom: 10px;
-        }
-
-        .question-num {
-            font-weight: bold;
-            color: var(--accent);
-        }
-
-        .question-value {
-            font-size: 0.85rem;
-            background-color: #2a2a2a;
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: #ccc;
-        }
-
-        .question-text {
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--text-light);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        /* Campos Discursivos */
-        textarea {
-            width: 100%;
-            height: 140px;
-            background-color: #171717;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-color);
-            padding: 12px;
-            box-sizing: border-box;
-            resize: vertical;
-            font-family: inherit;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .btn {
-            background-color: #262626;
-            color: var(--text-light);
-            border: 1px solid var(--border-color);
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn:hover {
-            border-color: var(--accent);
-            background-color: #2d2d2d;
-        }
-
-        .discursive-feedback {
-            margin-top: 20px;
-            background-color: #171717;
-            border-radius: 6px;
-            padding: 20px;
-            display: none;
-            border: 1px dashed var(--border-color);
-        }
-
-        .gabarito-title {
-            color: var(--accent);
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 1.05rem;
-        }
-
-        /* Checklists de Autoavaliação */
-        .checklist-box {
-            background-color: #222;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .checklist-title {
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #bbb;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .checklist-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            cursor: pointer;
-        }
-
-        .checklist-item input {
-            margin-top: 3px;
-            margin-right: 12px;
-            accent-color: var(--success);
-            transform: scale(1.1);
-        }
-
-        /* Opções Objetivas e V/F */
-        .options-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .option-item {
-            background-color: #262626;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .option-item:hover:not(.disabled) {
-            border-color: var(--primary);
-            background-color: #2d2d2d;
-        }
-
-        .option-item.selected-correct {
-            background-color: rgba(29, 185, 84, 0.15);
-            border-color: var(--success);
-            color: #a7f3d0;
-        }
-
-        .option-item.selected-incorrect {
-            background-color: rgba(235, 28, 36, 0.15);
-            border-color: var(--error);
-            color: #fca5a5;
-        }
-
-        .option-item.disabled {
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        .vf-badge {
-            font-weight: bold;
-            margin-right: 15px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            background-color: #1a1a1a;
-            min-width: 35px;
-            text-align: center;
-        }
-
-        .feedback-box {
-            margin-top: 15px;
-            padding: 15px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            display: none;
-            line-height: 1.5;
-        }
-
-        .feedback-box.correct { background-color: rgba(29, 185, 84, 0.1); border-left: 4px solid var(--success); color: #a7f3d0; }
-        .feedback-box.incorrect { background-color: rgba(235, 28, 36, 0.1); border-left: 4px solid var(--error); color: #fca5a5; }
-    </style>
 </head>
+
 <body>
 
 <div class="container">
-    <header>
-        <h1>Prova Prática: Ética Geral e Profissional</h1>
-        <div class="meta-info">Foco em Questões Subjetivas & Análise de Infrações Disciplinares[cite: 3]</div>
-    </header>
 
-    <!-- Dashboard Estatístico -->
-    <div class="scoreboard">
-        <div class="score-item">
-            <div class="score-title">Critérios Subjetivos</div>
-            <div id="sub-count" class="score-val correct">0 / 6</div>
-        </div>
-        <div class="score-item">
-            <div class="score-title">Objetivas (Acertos / Erros)</div>
-            <div id="obj-count" class="score-val" style="color: #fff;">0 / 0</div>
-        </div>
-        <div class="score-item">
-            <div class="score-title">Aproveitamento Geral</div>
-            <div id="total-pct" class="score-val average">0%</div>
-        </div>
-    </div>
+<h1 align="center">Simulado de Revisão</h1>
 
-    <!-- SEÇÃO PRINCIPAL: SUBJETIVAS -->
-    <div class="section-title">Parte I: Foco nas Questões Subjetivas</div>
+<form id="quiz"></form>
 
-    <!-- QUESTÃO SUBJETIVA 6 -->
-    <div class="card subjetiva">
-        <div class="question-header">
-            <span class="question-num">Questão Discursiva 6</span>
-            <span class="question-value">Valor: 1,0</span>
-        </div>
-        <div class="question-text">
-            A advogada Maria foi atender seu cliente em determinado estabelecimento prisional e lá teve uma conduta inaceitável, pois foi flagrada mostrando os seus seios ao cliente. Nesse caso, a advogada Maria cometeu alguma infração ética? Se sim, explique qual foi a infração e qual a respectiva sanção disciplinar a advogada pode sofrer?[cite: 3]
-        </div>
-        <textarea placeholder="Digite sua resposta jurídica fundamentada aqui..."></textarea>
-        <button class="btn" onclick="toggleSection('fb-dis-6')">Analisar Desempenho & Gabarito</button>
-        
-        <div class="discursive-feedback" id="fb-dis-6">
-            <div class="checklist-box">
-                <div class="checklist-title">Checklist de Correção (Marque o que inseriu no texto):</div>
-                <label class="checklist-item"><input type="checkbox" onchange="calcScore()" class="sub-check"> Confirmei que o ato constitui uma infração ética grave.</label>
-                <label class="checklist-item"><input type="checkbox" onchange="calcScore()" class="sub-check"> Tipifiquei a conduta como <strong>Inidoneidade Moral</strong> (Art. 34, XXVII, EAOAB).</label>
-                <label class="checklist-item"><input type="checkbox" onchange="calcScore()" class="sub-check"> Indiquei que a sanção aplicável a este caso é a pena de <strong>Exclusão</strong> (Art. 38, II).</label>
-            </div>
-            <div class="gabarito-title">Gabarito Espelho OAB:</div>
-            <p>Sim, a advogada cometeu uma infração disciplinar gravíssima. A conduta de introduzir atos libidinosos ou de exposição inadequada em estabelecimento prisional atenta gravemente contra a dignidade da advocacia, sendo tipificada como <strong>incompatível com a idoneidade moral</strong> exigida para o exercício da profissão (Art. 34, inciso XXVII do Estatuto da OAB). A sanção prevista para a inidoneidade moral é a **Exclusão** dos quadros da OAB, dependendo da aprovação de dois terços dos membros do Conselho Seccional competente (Art. 38, inciso II da Lei 8.906/94).</p>
-        </div>
-    </div>
+<center>
 
-    <!-- QUESTÃO SUBJETIVA 7 -->
-    <div class="card subjetiva">
-        <div class="question-header">
-            <span class="question-num">Questão Discursiva 7</span>
-            <span class="question-value">Valor: 1,0</span>
-        </div>
-        <div class="question-text">
-            O jovem advogado Breno, se tornou advogado recentemente, e dentro de um ano este entrou com 30 ações diferentes, mas todas erradas. Causando inclusive prejuízo aos clientes. Considerando o caso acima, justifique se existe ou não alguma infração ética praticada pelo advogado. E se sim, qual a infração e sanção ética?[cite: 3]
-        </div>
-        <textarea placeholder="Digite sua resposta jurídica fundamentada aqui..."></textarea>
-        <button class="btn" onclick="toggleSection('fb-dis-7')">Analisar Desempenho & Gabarito</button>
-        
-        <div class="discursive-feedback" id="fb-dis-7">
-            <div class="checklist-box">
-                <div class="checklist-title">Checklist de Correção (Marque o que inseriu no texto):</div>
-                <label class="checklist-item"><input type="checkbox" onchange="calcScore()" class="sub-check"> Confirmei a ocorrência de infração ética devida ao erro reiterado.</label>
-                <label class="checklist-item"><input type="checkbox" onchange="calcScore()" class="sub-check"> Tipifiquei a infração especificamente como <strong>Inépcia Profissional</strong> (Art. 34, XXIV, EAOAB).</label>
-                <label class="checklist-item"><input type="checkbox" onchange="calcScore()" class="sub-check"> Determinei que a sanção correta é a de <strong>Suspensão</strong> (Art. 37, I) cumulada ou não com multa.</label>
-            </div>
-            <div class="gabarito-title">Gabarito Espelho OAB:</div>
-            <p>Sim, o advogado cometeu infração ética. A prática reiterada de erros técnicos crassos que geram prejuízos aos constituintes caracteriza a infração de **Inépcia Profissional**, conforme disposto expressamente no Art. 34, inciso XXIV, do Estatuto da OAB. A sanção correspondente é a de **Suspensão** do exercício profissional (Art. 37, I), pelo prazo de 30 dias a 12 meses, a qual perdurará até que o profissional preste novas provas de habilitação técnica (Art. 37, § 1º e § 3º), podendo ser cumulada com pena de multa.</p>
-        </div>
-    </div>
+<button type="button" onclick="corrigir()">Corrigir</button>
 
-    <!-- SEÇÃO SECUNDÁRIA: OBJETIVAS -->
-    <div class="section-title">Parte II: Questões de Múltipla Escolha & V/F</div>
+<button type="button" onclick="location.reload()">Refazer</button>
 
-    <!-- QUESTÃO OBJETIVA 1 -->
-    <div class="card" id="q-obj-1" data-status="open">
-        <div class="question-header">
-            <span class="question-num">Questão 1 (Múltipla Escolha)</span>
-            <span class="question-value">Valor: 1,0</span>
-        </div>
-        <div class="question-text">
-            A advogada Leia Santos confeccionou cartões de visita para sua apresentação e de seu escritório. Nos cartões, constava seu nome, número de inscrição na OAB, bem como o site do escritório na Internet e um QR code para que o cliente possa obter informações sobre o escritório. Já o advogado Lucas Souza elaborou cartões de visita que, além do seu nome e número de inscrição na OAB, apresentam um logotipo discreto e a fotografia do escritório. Considerando o Código de Ética e Disciplina da OAB, assinale a afirmativa correta:[cite: 3]
-        </div>
-        <ul class="options-list">
-            <li class="option-item" onclick="resolveObjective('q-obj-1', this, false)">A) Leia e Lucas cometeram infrações éticas, pois inseriram elementos vedados pelo Código de Ética.[cite: 3]</li>
-            <li class="option-item" onclick="resolveObjective('q-obj-1', this, true)">B) Nenhum dos advogados cometeu infração ética, pois os elementos inseridos por ambos nos cartões de apresentação são autorizados.[cite: 3]</li>
-            <li class="option-item" onclick="resolveObjective('q-obj-1', this, false)">C) Apenas Leia cometeu infração ética, pois inseriu elementos vedados pelo Código de Ética.[cite: 3]</li>
-            <li class="option-item" onclick="resolveObjective('q-obj-1', this, false)">D) Apenas Lucas cometeu infração ética, pois inseriu elementos vedados pelo Código de Ética.[cite: 3]</li>
-        </ul>
-        <div class="feedback-box correct" id="q-obj-1-c"><strong>Excelente!</strong> Sob a égide do Provimento 205/2021 da OAB, o uso de logotipos discretos, QR Codes, sites eletrônicos e fotos reais da estrutura física do escritório são inteiramente permitidos, primando pela sobriedade.</div>
-        <div class="feedback-box incorrect" id="q-obj-1-i"><strong>Incorreto.</strong> Atente-se à modernização das regras de publicidade (Provimento 205/2021). Nenhuma das condutas fere o Estatuto ou o Código de Ética. A alternativa correta é a B.</div>
-    </div>
+</center>
 
-    <!-- QUESTÃO OBJETIVA 4 -->
-    <div class="card" id="q-obj-4" data-status="open">
-        <div class="question-header">
-            <span class="question-num">Questão 4 (Múltipla Escolha)</span>
-            <span class="question-value">Valor: 1,0</span>
-        </div>
-        <div class="question-text">
-            Deise é uma próspera advogada e passou a buscar novos desafios, sendo eleita Deputada Estadual. Por força de suas raras habilidades políticas, foi eleita integrante da Mesa Diretora da Assembleia Legislativa do Estado Z. Ao ocupar esse cargo procurou conciliar sua atividade parlamentar com o exercício da advocacia, sendo seu escritório agora administrado pela filha. Nos termos do Estatuto da Advocacia, assinale a afirmativa correta:[cite: 3]
-        </div>
-        <ul class="options-list">
-            <li class="option-item" onclick="resolveObjective('q-obj-4', this, false)">A) A atividade parlamentar de Deise a torna totalmente proibida de exercer a advocacia.[cite: 3]</li>
-            <li class="option-item" onclick="resolveObjective('q-obj-4', this, true)">B) A participação de Deise na Mesa Diretora a torna incompatível com o exercício da advocacia.[cite: 3]</li>
-            <li class="option-item" onclick="resolveObjective('q-obj-4', this, false)">C) A função de Deise como integrante da Mesa Diretora do Parlamento Estadual é conciliável com o exercício da advocacia.[cite: 3]</li>
-            <li class="option-item" onclick="resolveObjective('q-obj-4', this, false)">D) A atividade parlamentar de Deise na Mesa Diretora pode ser conciliada com o exercício da advocacia em prol dos necessitados.[cite: 3]</li>
-        </ul>
-        <div class="feedback-box correct" id="q-obj-4-c"><strong>Perfeito!</strong> Parlamentares comuns possuem mero impedimento (Art. 30, II). Todavia, ao ascenderem a cargos de **Mesa Diretora** do Poder Legislativo, passam a ter **Incompatibilidade Absoluta** (Art. 28, I).</div>
-        <div class="feedback-box incorrect" id="q-obj-4-i"><strong>Incorreto.</strong> O erro está em não diferenciar o parlamentar comum do membro da Mesa. Membros da Mesa Diretora sofrem Incompatibilidade Total (Art. 28, I). Alternativa correta: B.</div>
-    </div>
+<div id="resultado"></div>
 
-    <!-- QUESTÃO OBJETIVA 5 -->
-    <div class="card" id="q-obj-5" data-status="open">
-        <div class="question-header">
-            <span class="question-num">Questão 5 (Múltipla Escolha)</span>
-            <span class="question-value">Valor: 1,0</span>
-        </div>
-        <div class="question-text">
-            Alcides, advogado de longa data, resolve realizar concurso para o Ministério Público, vindo a ser aprovado em primeiro lugar. Após os trâmites legais, é designada data para a sua posse e o mesmo inicia sua jornada. Considerando o caso em tela:[cite: 3]
-        </div>
-        <ul class="options-list">
-            <li class="option-item" onclick="resolveObjective('q-obj-5', this, false)">A) Alcides se tornou impedido para o exercício da advocacia.[cite: 3]</li>
-            <li class="option-item" onclick="resolveObjective('q-obj-5', this, true)">B) Alcides se tornou incompatível para o exercício da advocacia.[cite: 3]</li>
-            <li class="option-item" onclick="resolveObjective('q-obj-5', this, false)">C) Alcides se tornou incompatível, mas pode advogar em casos específicos.[cite: 3]</li>
-            <li class="option-item" onclick="resolveObjective('q-obj-5', this, false)">D) Com a aprovação, Alcides ficará exercendo a advocacia, salvo contra o Ministério Público.[cite: 3]</li>
-        </ul>
-        <div class="feedback-box correct" id="q-obj-5-c"><strong>Correto!</strong> Membros do Ministério Público (Promotores e Procuradores) enquadram-se na proibição total — **Incompatibilidade** — ditada pelo Artigo 28, inciso II do Estatuto da OAB.</div>
-        <div class="feedback-box incorrect" id="q-obj-5-i"><strong>Incorreto.</strong> Integrantes do MP não podem exercer nenhuma atividade advocatícia paralelamente. Trata-se de incompatibilidade absoluta. Resposta correta: B.</div>
-    </div>
 </div>
 
 <script>
-    let subChecked = 0;
-    let objRight = 0;
-    let objWrong = 0;
-    const totalSubCriteria = 6;
-    const totalObjQuestions = 3;
 
-    function toggleSection(id) {
-        const el = document.getElementById(id);
-        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-    }
+const questoes=[
 
-    function resolveObjective(qId, selectedOpt, isRight) {
-        const card = document.getElementById(qId);
-        if (card.getAttribute('data-status') === 'closed') return;
-        card.setAttribute('data-status', 'closed');
+{
+p:"1. A Constituição Federal de 1988 é:",
+o:["Outorgada e flexível","Promulgada e rígida","Histórica e flexível","Outorgada e sintética"],
+c:1,
+j:"A CF/88 é promulgada e rígida."
+},
 
-        const items = card.querySelectorAll('.option-item');
-        items.forEach(item => item.classList.add('disabled'));
+{
+p:"2. As normas de eficácia limitada:",
+o:["Produzem todos os efeitos imediatamente","Nunca podem ser aplicadas","Dependem de regulamentação","Não existem"],
+c:2,
+j:"Dependem de regulamentação para produzir plenamente seus efeitos."
+},
 
-        if (isRight) {
-            selectedOpt.classList.add('selected-correct');
-            document.getElementById(`${qId}-c`).style.display = 'block';
-            objRight++;
-        } else {
-            selectedOpt.classList.add('selected-incorrect');
-            document.getElementById(`${qId}-i`).style.display = 'block';
-            objWrong++;
-            
-            // Highlight right one
-            items.forEach(item => {
-                if(item.textContent.startsWith('B)')) item.classList.add('selected-correct');
-            });
-        }
+{
+p:"3. O Habeas Corpus protege:",
+o:["Patrimônio","Liberdade de locomoção","Direito à informação","Meio ambiente"],
+c:1,
+j:"O HC protege a liberdade de locomoção."
+},
 
-        document.getElementById('obj-count').textContent = `${objRight} / ${objWrong}`;
-        calcScore();
-    }
+{
+p:"4. O Mandado de Injunção é utilizado quando:",
+o:["Há prisão ilegal","Falta lei regulamentadora","Existe dano ao patrimônio","Há erro em cadastro"],
+c:1,
+j:"O MI combate a omissão legislativa."
+},
 
-    function calcScore() {
-        const checkboxes = document.querySelectorAll('.sub-check');
-        let checkedCount = 0;
-        checkboxes.forEach(box => { if (box.checked) checkedCount++; });
-        
-        subChecked = checkedCount;
-        document.getElementById('sub-count').textContent = `${subChecked} / ${totalSubCriteria}`;
+{
+p:"5. As normas de eficácia contida:",
+o:["Nunca produzem efeitos","Dependem sempre de lei","São imediatas, mas podem ser restringidas","Só produzem efeitos após regulamentação"],
+c:2,
+j:"São autoaplicáveis, porém podem sofrer restrições legais."
+},
 
-        // Cálculo balanceado: Subjetivas peso 60% (10% por critério), Objetivas peso 40%
-        let subPoints = (subChecked / totalSubCriteria) * 60;
-        let objPoints = (objRight / totalObjQuestions) * 40;
-        
-        let finalScore = Math.round(subPoints + objPoints);
-        document.getElementById('total-pct').textContent = `${finalScore}%`;
-    }
+{
+p:"6. A principal diferença entre eficácia plena e limitada é:",
+o:["A plena depende de lei","A limitada depende de regulamentação","São iguais","Nenhuma"],
+c:1,
+j:"A limitada necessita de regulamentação."
+},
+
+{
+p:"7. A Constituição de 1988 é considerada:",
+o:["Analítica","Sintética","Costumeira","Flexível"],
+c:0,
+j:"A CF/88 trata de diversos assuntos."
+},
+
+{
+p:"8. A CF/88 é quanto à ideologia:",
+o:["Ortodoxa","Eclética","Histórica","Flexível"],
+c:1,
+j:"Reúne ideias de diferentes correntes."
+},
+
+{
+p:"9. Direitos fundamentais são:",
+o:["Bens protegidos","Instrumentos de proteção","Leis complementares","Decretos"],
+c:0,
+j:"São os bens jurídicos protegidos."
+},
+
+{
+p:"10. Garantias fundamentais são:",
+o:["Direitos sociais","Mecanismos de proteção","Leis penais","Emendas"],
+c:1,
+j:"Garantias protegem os direitos."
+},
+
+{
+p:"11. Os direitos fundamentais são:",
+o:["Absolutos","Relativos","Temporários","Revogáveis"],
+c:1,
+j:"Nenhum direito fundamental é absoluto."
+},
+
+{
+p:"12. Os direitos fundamentais são:",
+o:["Prescritíveis","Imprescritíveis","Temporários","Negociáveis"],
+c:1,
+j:"Não se perdem pelo tempo."
+},
+
+{
+p:"13. O Habeas Data serve para:",
+o:["Liberdade","Corrigir dados pessoais","Anular lei","Proteger patrimônio"],
+c:1,
+j:"Permite conhecer ou corrigir dados pessoais."
+},
+
+{
+p:"14. O Mandado de Segurança protege:",
+o:["Direito líquido e certo","Locomoção","Meio ambiente","Patrimônio"],
+c:0,
+j:"Quando não cabe HC nem HD."
+},
+
+{
+p:"15. A primeira geração relaciona-se à:",
+o:["Igualdade","Liberdade","Fraternidade","Saúde"],
+c:1,
+j:"Direitos civis e políticos."
+},
+
+{
+p:"16. A segunda geração relaciona-se à:",
+o:["Liberdade","Igualdade","Patrimônio","Nacionalidade"],
+c:1,
+j:"Direitos sociais."
+},
+
+{
+p:"17. A terceira geração refere-se à:",
+o:["Fraternidade","Liberdade","Igualdade","Voto"],
+c:0,
+j:"Direitos difusos e coletivos."
+},
+
+{
+p:"18. Meio ambiente pertence à:",
+o:["Primeira geração","Segunda geração","Terceira geração","Quarta geração"],
+c:2,
+j:"É direito de solidariedade."
+},
+
+{
+p:"19. Ação Popular pode ser proposta por:",
+o:["Qualquer cidadão","Qualquer advogado","Juiz","Promotor apenas"],
+c:0,
+j:"É um instrumento de cidadania."
+},
+
+{
+p:"20. O tema mais cobrado em provas é:",
+o:["Diferença entre eficácia plena, contida e limitada","Direito Tributário","Direito Penal Militar","Falência"],
+c:0,
+j:"É um dos assuntos mais frequentes em concursos."
+}
+
+];
+
+const quiz=document.getElementById("quiz");
+
+questoes.forEach((q,i)=>{
+
+let html=`<div class="questao"><h3>${q.p}</h3>`;
+
+q.o.forEach((op,j)=>{
+
+html+=`
+<label>
+<input type="radio" name="q${i}" value="${j}">
+${String.fromCharCode(65+j)}) ${op}
+</label><br>
+`;
+
+});
+
+html+=`<div id="c${i}" class="comentario"></div></div>`;
+
+quiz.innerHTML+=html;
+
+});
+
+function corrigir(){
+
+let acertos=0;
+let erros=0;
+
+questoes.forEach((q,i)=>{
+
+let r=document.querySelector("input[name=q"+i+"]:checked");
+
+let c=document.getElementById("c"+i);
+
+c.style.display="block";
+
+if(r && Number(r.value)==q.c){
+
+acertos++;
+
+c.innerHTML="<span class='correta'>✔ Correto!</span><br>"+q.j;
+
+}else{
+
+erros++;
+
+c.innerHTML="<span class='errada'>✘ Errado.</span><br>Resposta correta: <b>"+String.fromCharCode(65+q.c)+"</b><br>"+q.j;
+
+}
+
+});
+
+let nota=((acertos/20)*100).toFixed(1);
+
+document.getElementById("resultado").style.display="block";
+
+document.getElementById("resultado").innerHTML=`
+<h2>Resultado</h2>
+
+<p><b>Acertos:</b> ${acertos}</p>
+
+<p><b>Erros:</b> ${erros}</p>
+
+<p><b>Aproveitamento:</b> ${nota}%</p>
+`;
+
+window.scrollTo(0,document.body.scrollHeight);
+
+}
+
 </script>
 
 </body>
