@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado - Direitos e Garantias Fundamentais</title>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #121212;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 850px;
+        margin: auto;
+        background: #1e1e1e;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 6px 20px rgba(0,0,0,0.5);
+        border: 1px solid #2d2d2d;
+    }
+
+    h1 {
+        text-align: center;
+        color: #e50914;
+        margin-bottom: 5px;
+        font-size: 26px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #aaaaaa;
+        font-size: 16px;
+        margin-bottom: 35px;
+        font-weight: 400;
+    }
+
+    .questao {
+        margin-bottom: 30px;
+        padding: 22px;
+        border-left: 5px solid #e50914;
+        background: #252525;
+        border-radius: 0 10px 10px 0;
+        border-top: 1px solid #2d2d2d;
+        border-right: 1px solid #2d2d2d;
+        border-bottom: 1px solid #2d2d2d;
+    }
+
+    .questao h3 {
+        margin-top: 0;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #ffffff;
+    }
+
+    .opcao-label {
+        display: block;
+        padding: 10px 12px;
+        margin: 6px 0;
+        cursor: pointer;
+        border-radius: 6px;
+        background: #1e1e1e;
+        border: 1px solid #333;
+        transition: all 0.2s ease;
+    }
+
+    .opcao-label:hover {
+        background: #2d2d2d;
+        border-color: #555;
+    }
+
+    input[type="radio"] {
+        margin-right: 10px;
+        accent-color: #e50914;
+    }
+
+    .botoes-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    button {
+        padding: 14px 30px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        background: #e50914;
+        color: white;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    button:hover {
+        background: #b20710;
+    }
+
+    button:active {
+        transform: scale(0.98);
+    }
+
+    button.btn-refazer {
+        background: #444444;
+        color: #e0e0e0;
+    }
+    button.btn-refazer:hover {
+        background: #555555;
+    }
+
+    .comentario {
+        margin-top: 15px;
+        padding: 14px;
+        background: #1a233a;
+        display: none;
+        border-radius: 8px;
+        border: 1px solid #28385e;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .resultado {
+        margin-top: 35px;
+        padding: 25px;
+        font-size: 18px;
+        background: #1a3a2a;
+        border-radius: 10px;
+        border: 1px solid #2e7d32;
+        display: none;
+        text-align: center;
+    }
+
+    .resultado h2 {
+        color: #ffffff;
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .correta { color: #4caf50; font-weight: bold; }
+    .errada { color: #f44336; font-weight: bold; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>SIMULADO DE DIREITO CONSTITUCIONAL I</h1>
+    <h2>Revisão Especial - Direitos e Garantias Fundamentais</h2>
+
+    <form id="quiz" onsubmit="event.preventDefault();"></form>
+
+    <div class="botoes-container">
+        <button id="btnCorrigir">Corrigir Simulado</button>
+        <button id="btnRefazer" class="btn-refazer">Refazer Simulado</button>
+    </div>
+
+    <div id="resultado" class="resultado"></div>
+</div>
+
+<script>
+const questoes = [
+    {
+        pergunta: "01 - (FGV - 2025 - Exame 44 da OAB) Durante uma forte tempestade que causou interrupções no fornecimento de energia na cidade Delta, o Prefeito Municipal, buscando evitar o agravamento da situação de iminente perigo público, requisitou um gerador de energia de propriedade da sociedade empresária Gama para manter em funcionamento o hospital municipal. O equipamento foi utilizado por dois dias, até que o fornecimento de energia fosse restabelecido, o que não causou qualquer dano ao bem requisitado. Diante dessa situação, o sócio-gerente de Gama compareceu à Prefeitura de Delta para exigir indenização pela requisição do bem. A esse respeito, assinale a afirmativa correta.",
+        opcoes: [
+            "A sociedade empresária Gama tem direito à indenização, independentemente de ter havido dano ao bem.",
+            "A sociedade empresária Gama só teria direito à indenização se a requisição tivesse sido realizada por autoridade federal, mas não pela autoridade citada no caso concreto.",
+            "Como o bem não sofreu danos durante sua utilização, a sociedade empresária Gama não tem direito à indenização.",
+            "A utilização de bem privado, em prol do interesse público, sendo-lhe causado dano, ou não, não gera direito à indenização."
+        ],
+        correta: 2,
+        comentario: "Nos termos do Art. 5º, XXV da CF/88, no caso de iminente perigo público, a autoridade competente poderá usar de propriedade particular, assegurada ao proprietário indenização ulterior, SE HOUVER DANO. Como não houve dano, não há direito à indenização."
+    },
+    {
+        pergunta: "02 - (VUNESP - 2026 - MPE-SC - Promotor de Justiça) Um programa de televisão exibiu, em 2024, um documentário reconstituindo um crime notório ocorrido na década de 1980. O programa citou o nome do autor do crime, Y, que já cumpriu integralmente sua pena e vive em anonimato há mais de vinte anos, ressocializado. Y ajuizou ação indenizatória por danos morais contra a emissora, invocando o Direito ao Esquecimento. Considerando o entendimento do STF sobre o Direito ao Esquecimento na esfera cível, assinale a alternativa correta.",
+        opcoes: [
+            "O STF definiu que o direito ao esquecimento deve ser aplicado ponderando-se os princípios em colisão, prevalecendo o direito à intimidade sobre o direito à informação quando decorridos mais de trinta anos do fato, o que gera presunção absoluta de dano moral (in re ipsa) em favor de Y.",
+            "A liberdade de imprensa é absoluta e não admite controle posterior pelo Poder Judiciário, de modo que, sendo o fato verídico e de domínio público (arquivo judicial), não há possibilidade de responsabilização civil da emissora, nem mesmo em casos de abuso ou sensacionalismo, sob pena de censura.",
+            "É incompatível com a CF a ideia de um direito ao esquecimento que possibilite impedir, em razão da passagem do tempo, a divulgação de fatos ou dados verídicos e licitamente obtidos e publicados pelos meios de comunicação social; contudo, eventuais excessos ou abusos no exercício da liberdade de expressão e de informação podem ser analisados caso a caso, gerando dever de indenizar.",
+            "O STF reconheceu a existência do direito ao esquecimento como decorrência direta da dignidade da pessoa humana e da vedação às penas de caráter perpétuo, impondo à emissora o dever de indenizar Y por reavivar fatos pretéritos que prejudicam sua ressocialização, independentemente da veracidade da informação."
+        ],
+        correta: 2,
+        comentario: "O STF fixou a tese (Tema 1055) de que o 'direito ao esquecimento' é incompatível com a Constituição Federal quando usado para proibir a divulgação de fatos verídicos. Eventuais abusos devem ser analisados e reparados caso a caso."
+    },
+    {
+        pergunta: "03 - (VUNESP - 2026 - MPE-SC - Promotor de Justiça) À luz da CF e da jurisprudência consolidada do STF sobre concursos públicos, assinale a alternativa correta.",
+        opcoes: [
+            "É legítima a exclusão de candidato de concurso público em razão da existência de ação penal em curso, desde que o edital preveja tal hipótese e o crime imputado seja incompatível com as atribuições do cargo.",
+            "A Administração Pública é obrigada a assegurar segunda chamada para teste de aptidão física sempre que o candidato demonstrar a ocorrência de motivo de força maior, ainda que inexistente previsão editalícia.",
+            "A fixação de limite máximo de idade para ingresso em cargo público somente é constitucional quando houver previsão legal específica e demonstração objetiva de compatibilidade entre a restrição etária e a natureza das atribuições do cargo.",
+            "É constitucional a negativa de remarcação da prova objetiva por motivo de crença religiosa, ainda que inexistente prejuízo à isonomia entre os candidatos, uma vez que o edital constitui lei interna do certame e vincula a Administração e os participantes."
+        ],
+        correta: 2,
+        comentario: "Súmula Vinculante 44 do STF: 'A fixação de limite de idade para inscrição em concurso público só se legitima quando prevista em lei e justificada pela natureza das atribuições do cargo a ser preenchido'."
+    },
+    {
+        pergunta: "04 - Com base nas disposições constitucionais referentes aos direitos e garantias fundamentais, assinale a opção correta.",
+        opcoes: [
+            "Assegura-se o direito à proteção dos dados pessoais, porém inexiste previsão para a proteção de dados digitais.",
+            "A garantia da razoável duração do processo abrange apenas a esfera judicial.",
+            "É absoluta a proibição da pena de morte de acordo.",
+            "O preso será informado de seus direitos, entre os quais o de permanecer calado, sendo-lhe assegurada a assistência da família e de advogado."
+        ],
+        correta: 3,
+        comentario: "Trata-se da reprodução literal do Art. 5º, LXIII, da CF/88. A proteção de dados inclui os meios digitais (Art. 5º, LXXIX), a razoável duração abrange a esfera administrativa (Art. 5º, LXXVIII) e a pena de morte tem exceção em caso de guerra declarada (Art. 5º, XLVII, 'a')."
+    },
+    {
+        pergunta: "05 - De acordo com a jurisprudência do Supremo Tribunal Federal acerca da disciplina constitucional dos direitos e garantias fundamentais, marque a alternativa correta.",
+        opcoes: [
+            "É inconstitucional a interpretação que considera a interrupção da gravidez de feto anencéfalo ser conduta tipificada nos artigos 124, 126 e 128, incisos I e II, do Código Penal.",
+            "A lei de proteção de animais que permite o sacrifício ritual de animais em cultos de matriz africana sem crueldade excessiva foi declarada inconstitucional.",
+            "É inconstitucional, por violação à garantia da ampla defesa e do devido processo legal, sanção aplicada em processo administrativo disciplinar no qual não tenha havido defesa técnica por advogado.",
+            "Impor aos pais a obrigatoriedade de vacinar os filhos menores viola a liberdade de consciência e organização familiar e, consequentemente, pode afetar sua liberdade filosófica e religiosa."
+        ],
+        correta: 0,
+        comentario: "Na ADPF 54, o STF declarou a constitucionalidade da antecipação terapêutica do parto de feto anencéfalo, afastando a tipificação criminal do aborto nesses casos. O sacrifício em cultos de matriz africana é constitucional (RE 494.601); a defesa técnica por advogado no PAD não é obrigatória (Súmula Vinculante 5); e a vacinação obrigatória infantil é plenamente constitucional."
+    },
+    {
+        pergunta: "06 - De acordo com a jurisprudência do Supremo Tribunal Federal acerca da disciplina constitucional dos direitos e garantias fundamentais, marque a alternativa correta.",
+        opcoes: [
+            "De acordo com o STF, manifestações que promovam racismo, intolerância, relativizações e comparações discriminatórias não estão protegidas pela liberdade de expressão.",
+            "A previsão em lei da obrigatoriedade de manutenção de exemplares de Bíblias em escolas e bibliotecas públicas estaduais é compatível com a liberdade de consciência e de crença.",
+            "A garantia constitucional da inviolabilidade domiciliar abrange apenas a residência dos indivíduos.",
+            "Para que seja publicada uma biografia, é necessária autorização prévia do indivíduo biografado."
+        ],
+        correta: 0,
+        comentario: "O STF consolidou que discursos de ódio e racismo não são agasalhados pela liberdade de expressão. Por outro lado, o STF julgou inconstitucional a obrigação de Bíblias em escolas públicas por violar a laicidade do Estado; o domicílio abrange escritórios profissionais; e biografias dispensam autorização prévia (ADI 4.815)."
+    },
+    {
+        pergunta: "07 - (FGV - 2025 - TJ-RS - Analista Judiciário) Considerando as disposições da Constituição Federal, as opções a seguir apresentam direitos e garantias fundamentais constitucionalmente assegurados, à EXCEÇÃO DE UMA. Assinale-a.",
+        opcoes: [
+            "A todos, no âmbito judicial e administrativo, são assegurados a razoável duração do processo e os meios que garantam a celeridade de sua tramitação.",
+            "Ninguém será submetido a tortura nem a tratamento desumano ou degradante.",
+            "Ninguém será privado da liberdade ou de seus bens sem o devido processo legal.",
+            "É livre a manifestação do pensamento, inclusive mediante o anonimato."
+        ],
+        correta: 3,
+        comentario: "A alternativa D é a exceção (e gabarito da questão) pois o texto constitucional proíbe expressamente o anonimato: 'É livre a manifestação do pensamento, sendo vedado o anonimato' (Art. 5º, IV)."
+    },
+    {
+        pergunta: "08 - Assinale a opção que apresenta um direito fundamental de 2ª geração.",
+        opcoes: [
+            "Educação",
+            "Propriedade",
+            "Privacidade",
+            "Meio ambiente ecologicamente equilibrado"
+        ],
+        correta: 0,
+        comentario: "Os direitos de segunda geração são os direitos sociais, econômicos e culturais (ligados à Igualdade), como a Educação. Propriedade e Privacidade são de 1ª geração (Liberdade), e o Meio Ambiente é de 3ª geração (Fraternidade/Solidariedade)."
+    },
+    {
+        pergunta: "09 - (CESPE - MPE CE - 2020) Julgue o item a seguir: Os direitos fundamentais não podem ser considerados absolutos, posto que todos os direitos são passíveis de relativização que podem entrar em conflito entre si e sofrer restrições externas.",
+        opcoes: [
+            "Certo",
+            "Errado"
+        ],
+        correta: 0,
+        comentario: "O item está CERTO. No ordenamento jurídico brasileiro, os direitos fundamentais são relativos e não absolutos. Em cenários de colisão de direitos, aplica-se o princípio da proporcionalidade/ponderação para que um direito ceda parcialmente em favor do outro."
+    }
+];
+
+const form = document.getElementById("quiz");
+
+questoes.forEach((q, i) => {
+    let html = `<div class="questao"><h3>${q.pergunta}</h3>`;
+    
+    q.opcoes.forEach((op, j) => {
+        html += `
+        <label class="opcao-label">
+            <input type="radio" name="q${i}" value="${j}">
+            ${String.fromCharCode(65 + j)}) ${op}
+        </label>`;
+    });
+    
+    html += `<div id="c${i}" class="comentario"></div></div>`;
+    form.innerHTML += html;
+});
+
+document.getElementById("btnCorrigir").addEventListener("click", corrigir);
+document.getElementById("btnRefazer").addEventListener("click", () => location.reload());
+
+function corrigir() {
+    let acertos = 0;
+    let erros = 0;
+
+    questoes.forEach((q, i) => {
+        const resposta = document.querySelector(`input[name="q${i}"]:checked`);
+        const divComentario = document.getElementById(`c${i}`);
+        divComentario.style.display = "block";
+
+        if (resposta && Number(resposta.value) === q.correta) {
+            acertos++;
+            divComentario.innerHTML = `<span class="correta">✔ Correto.</span><br>${q.comentario}`;
+        } else {
+            erros++;
+            const letraCorreta = String.fromCharCode(65 + q.correta);
+            divComentario.innerHTML = `<span class="errada">✘ Errado.</span><br>Resposta correta: <b>${letraCorreta}</b><br>${q.comentario}`;
+        }
+    });
+
+    const nota = ((acertos / questoes.length) * 100).toFixed(1);
+    const res = document.getElementById("resultado");
+    
+    res.style.display = "block";
+    res.innerHTML = `
+        <h2>Resultado do Simulado</h2>
+        <p><b>Acertos:</b> <span class="correta">${acertos} de ${questoes.length}</span></p>
+        <p><b>Aproveitamento:</b> <b>${nota}%</b></p>
+        <p style="font-size: 14px; color: #aaa; margin-top: 10px;">Foco total na prova de segunda-feira! Revise os comentários das questões que errou.</p>
+    `;
+
+    res.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
