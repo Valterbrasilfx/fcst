@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado II - Teoria da Constituição e Poder Constituinte</title>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #121212;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 850px;
+        margin: auto;
+        background: #1e1e1e;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 6px 20px rgba(0,0,0,0.5);
+        border: 1px solid #2d2d2d;
+    }
+
+    h1 {
+        text-align: center;
+        color: #e50914;
+        margin-bottom: 5px;
+        font-size: 26px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #aaaaaa;
+        font-size: 16px;
+        margin-bottom: 35px;
+        font-weight: 400;
+    }
+
+    .questao {
+        margin-bottom: 30px;
+        padding: 22px;
+        border-left: 5px solid #e50914;
+        background: #252525;
+        border-radius: 0 10px 10px 0;
+        border-top: 1px solid #2d2d2d;
+        border-right: 1px solid #2d2d2d;
+        border-bottom: 1px solid #2d2d2d;
+    }
+
+    .questao h3 {
+        margin-top: 0;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #ffffff;
+    }
+
+    .opcao-label {
+        display: block;
+        padding: 10px 12px;
+        margin: 6px 0;
+        cursor: pointer;
+        border-radius: 6px;
+        background: #1e1e1e;
+        border: 1px solid #333;
+        transition: all 0.2s ease;
+    }
+
+    .opcao-label:hover {
+        background: #2d2d2d;
+        border-color: #555;
+    }
+
+    input[type="radio"] {
+        margin-right: 10px;
+        accent-color: #e50914;
+    }
+
+    .botoes-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    button {
+        padding: 14px 30px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        background: #e50914;
+        color: white;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    button:hover {
+        background: #b20710;
+    }
+
+    button:active {
+        transform: scale(0.98);
+    }
+
+    button.btn-refazer {
+        background: #444444;
+        color: #e0e0e0;
+    }
+    button.btn-refazer:hover {
+        background: #555555;
+    }
+
+    .comentario {
+        margin-top: 15px;
+        padding: 14px;
+        background: #1a233a;
+        display: none;
+        border-radius: 8px;
+        border: 1px solid #28385e;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .resultado {
+        margin-top: 35px;
+        padding: 25px;
+        font-size: 18px;
+        background: #1a3a2a;
+        border-radius: 10px;
+        border: 1px solid #2e7d32;
+        display: none;
+        text-align: center;
+    }
+
+    .resultado h2 {
+        color: #ffffff;
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .correta { color: #4caf50; font-weight: bold; }
+    .errada { color: #f44336; font-weight: bold; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>SIMULADO DE DIREITO CONSTITUCIONAL I</h1>
+    <h2>Unidade 01 - Teoria da Constituição e Poder Constituinte</h2>
+
+    <form id="quiz" onsubmit="event.preventDefault();"></form>
+
+    <div class="botoes-container">
+        <button id="btnCorrigir">Corrigir Simulado</button>
+        <button id="btnRefazer" class="btn-refazer">Refazer Simulado</button>
+    </div>
+
+    <div id="resultado" class="resultado"></div>
+</div>
+
+<script>
+const questoes = [
+    {
+        pergunta: "01 - (CEBRASPE - PGM - Cuiabá - Procurador - 2024) Em relação ao neoconstitucionalismo, assinale a opção correta.",
+        opcoes: [
+            "O neoconstitucionalismo defende uma interpretação constitucional dogmática e formal.",
+            "O neoconstitucionalismo está associado à expansão da jurisdição dos tribunais constitucionais.",
+            "O neoconstitucionalismo surgiu como movimento doutrinário no início do século XVIII.",
+            "Na perspectiva do neoconstitucionalismo, o elemento ético é irrelevante na consideração do direito."
+        ],
+        correta: 1,
+        comentario: "O neoconstitucionalismo é marcado pela 'judicialização da política' e pela forte expansão da jurisdição constitucional, conferindo papel protagonista aos tribunais constitucionais na concretização de direitos fundamentais."
+    },
+    {
+        pergunta: "02 - Considerando as normas constitucionais abaixo transcritas, assinale a opção que indica corretamente uma norma de eficácia contida:",
+        opcoes: [
+            "Art. 5º, LVIII: O civilmente identificado não será submetido a identificação criminal, salvo nas hipóteses previstas em lei.",
+            "Art. 5º, III: Ninguém será submetido a tortura nem a tratamento desumano ou degradante.",
+            "Art. 218, CF/88: O Estado promoverá e incentivará o desenvolvimento científico, a pesquisa, a capacitação científica e tecnológica e a inovação.",
+            "Art. 215, CF/88: O Estado garantirá a todos o pleno exercício dos direitos culturais e acesso às fontes da cultura nacional, e apoiará e incentivará a valorização e a difusão das manifestações culturais."
+        ],
+        correta: 0,
+        comentario: "Nota do professor: Gabarito correto é a Letra A. O Art. 5º, LVIII traz uma eficácia contida porque a norma tem aplicação imediata e plena, mas o seu alcance pode ser restringido ou contido por uma lei futura ('salvo nas hipóteses previstas em lei')."
+    },
+    {
+        pergunta: "03 - (VUNESP - 2023 - PC-SP - Delegado) A respeito das Emendas à Constituição, é correto afirmar que:",
+        opcoes: [
+            "Não podem dispor sobre direitos fundamentais.",
+            "Decorrem do exercício do poder constituinte derivado decorrente.",
+            "Serão promulgadas pelo Presidente da República.",
+            "Não podem dispor sobre as regras constitucionais que regulam o processo de modificação da Constituição."
+        ],
+        correta: 3,
+        comentario: "As Emendas Constitucionais não podem alterar ou abolir as próprias regras do processo de reforma se isso visar enfraquecer o poder de rigidez da CF. Elas decorrem do poder constituinte derivado *reformador* (e não decorrente). Elas são promulgadas pelas Mesas da Câmara e do Senado (não pelo Presidente)."
+    },
+    {
+        pergunta: "04 - Em um país fictício, o governo recém-eleito decide implementar uma nova Constituição para refletir as mudanças sociais e políticas desejadas pela população. Durante o processo constituinte, diferentes grupos defendem abordagens distintas sobre o papel e a natureza da Constituição. Assinale a alternativa que traz a correlação correta com a concepção de Ferdinand Lassalle:",
+        opcoes: [
+            "O grupo que defende que a Constituição é uma decisão política fundamental representa a concepção sociológica.",
+            "O grupo que sustenta que a Constituição é primordialmente uma norma jurídica suprema representa a concepção política.",
+            "O grupo que argumenta que a Constituição deve refletir os fatores reais de poder existentes na sociedade representa a concepção sociológica, entendendo-a como uma mera 'folha de papel' se não tiver efetividade."
+        ],
+        correta: 2,
+        comentario: "Para Ferdinand Lassalle (Concepção Sociológica), a Constituição real é a soma dos fatores reais de poder de uma nação. A constituição escrita/jurídica seria uma simples 'folha de papel' desprovida de força se não corresponder à realidade social."
+    },
+    {
+        pergunta: "05 - Acerca da história das constituições brasileiras, assinale a opção correta.",
+        opcoes: [
+            "A experiência constitucional brasileira, desde a Constituição Imperial de 1824, adotou a tripartição dos Poderes, em sintonia com a tradição liberal fundamentada na doutrina de Montesquieu.",
+            "A história constitucional brasileira registra duas Constituições outorgadas, sendo a de 1824, pelo Imperador Dom Pedro I, e a de 1967, pelo regime militar instaurado em 1964.",
+            "O voto feminino no Brasil foi expressamente previsto pela primeira vez num texto constitucional na Constituição de 1934.",
+            "A Constituição de 1891 dispôs sobre o federalismo de cooperação e delineou um Estado Social e Democrático de Direito."
+        ],
+        correta: 2,
+        comentario: "O voto feminino foi constitucionalizado pela primeira vez na Constituição de 1934 (embora já estivesse previsto no Código Eleitoral de 1932). A de 1824 adotou a *tetrapartição* (com o Poder Moderador); e o Brasil teve mais de duas outorgadas (1824, 1937, 1967/1969)."
+    },
+    {
+        pergunta: "06 - A manutenção em vigor de Constituição anterior que, porém, perde a sua hierarquia constitucional para operar como legislação comum é conhecida como:",
+        opcoes: [
+            "Repristinação.",
+            "Recepção.",
+            "Desconstitucionalização.",
+            "Mutação constitucional."
+        ],
+        correta: 2,
+        comentario: "Nota do professor: Gabarito correto é a Letra C. A desconstitucionalização ocorre quando as normas da Constituição anterior, desde que materialmente compatíveis com a nova, continuam válidas, porém rebaixadas ao status de lei ordinária."
+    },
+    {
+        pergunta: "07 - Sobre a peculiaridade do procedimento legislativo para a edição de Emendas Constitucionais (EC), a Constituição Federal prevê que a:",
+        opcoes: [
+            "O Presidente da República não pode apresentar Proposta de EC.",
+            "EC deve, após sanção presidencial, ser promulgada pelo Congresso Nacional.",
+            "A proposta de EC será discutida e votada em cada Casa do Congresso Nacional, em dois turnos de votação.",
+            "A votação se dará por dois quintos dos votos na Câmara e no Senado."
+        ],
+        correta: 2,
+        comentario: "O processo de votação exige quórum qualificado, sendo discutido e votado em cada casa do Congresso (Câmara e Senado) em 2 turnos (Art. 60, §2º). O quórum correto é de *três quintos* (3/5) e não há sanção ou veto presidencial em PEC."
+    },
+    {
+        pergunta: "08 - (FGV - 2018 - OAB - Exame XXVI) A expressão \"mutação constitucional\", no âmbito do sistema jurídico-constitucional brasileiro, refere-se a um fenômeno:",
+        opcoes: [
+            "concernente à atuação do poder constituinte derivado reformador, no processo de alteração do texto constitucional.",
+            "referente à mudança promovida no significado normativo constitucional, por meio da utilização de emenda à Constituição.",
+            "relacionado à alteração de significado de norma constitucional sem que haja qualquer mudança no texto da Constituição Federal.",
+            "de alteração do texto constitucional antigo por um novo, em virtude de manifestação de uma Assembleia Nacional Constituinte."
+        ],
+        correta: 2,
+        comentario: "A mutação constitucional representa um processo informal de reforma do texto. Ocorre alteração do sentido, significado e alcance da norma, motivada por novas realidades sociais, mantendo o texto literal idêntico."
+    },
+    {
+        pergunta: "09 - A Constituição Federal de 1988 disciplinou determinada assunto em norma de eficácia limitada. Uma Lei Ordinária, que fora editada em momento anterior a promulgação da Constituição Federal de 1988, possui uma incompatibilidade material, com a referida norma constitucional de eficácia limitada. Com isso, instaurou-se uma grande dúvida em relação à possibilidade, ou não, de, na atualidade, ser aplicada a Lei Ordinária. Nesse caso, é correto afirmar que:",
+        opcoes: [
+            "Apesar de a norma de eficácia limitada necessitar de regulamentação, ela revogou (não recepcionou) a Lei Ordinária anterior que com ela for incompatível.",
+            "Caso a norma de eficácia limitada seja de princípio programático, a Lei Ordinária continuará a ser aplicada até a regulamentação daquela.",
+            "Somente as normas constitucionais de eficácia plena produzem efeitos, não as normas de eficácia limitada e contida.",
+            "A norma de eficácia limitada, apesar de carente de regulamentação, deve influir apenas na interpretação da Lei Ordinária, mas não acarreta a sua revogação."
+        ],
+        correta: 0,
+        comentario: "Nota do professor: Gabarito Letra A. O fenômeno é de não-recepção (revogação). Mesmo sendo de eficácia limitada, a nova norma constitucional possui eficácia jurídica negativa (ou revogatória), fulminando as leis infraconstitucionais anteriores que forem incompatíveis com o seu conteúdo."
+    },
+    {
+        pergunta: "10 - Sobre o poder constituinte reformador e os fundamentos da Constituição Brasileira de 1988, marque a alternativa correta:",
+        opcoes: [
+            "São fundamentos da República Federativa do Brasil, entre outros, a soberania, os valores econômicos do trabalho e da livre iniciativa e o repúdio ao terrorismo e ao racismo.",
+            "O poder constituinte derivado decorrente é o que confere à União, aos Estados e aos Municípios a possibilidade de reformar a Constituição.",
+            "Erradicar a pobreza e a marginalização e reduzir as desigualdades sociais e regionais são fundamentos da República Federativa do Brasil.",
+            "O Poder Constituinte Reformador está relacionado diretamente com as emendas à constituição, pois se manifesta através da alteração do texto constitucional original."
+        ],
+        correta: 3,
+        comentario: "Nota do professor em verde: Letra B está errada (pois decorrente se limita aos Estados de forma estrita para fazerem suas Cartas). O gabarito correto é a Letra D, visto que o poder reformador é o encarregado de promover modificações ao texto original por meio de Emendas Constitucionais."
+    },
+    {
+        pergunta: "11 - (Questão Dissertativa Adaptada) Assinale a classificação correta da Constituição de 1988 quanto à estabilidade e justifique de acordo com as regras de modificação:",
+        opcoes: [
+            "Sintética, pois trata do assunto em poucos artigos.",
+            "Rígida, pois exige para a sua alteração um processo legislativo muito mais rigoroso e solene (votação em 2 turnos, com quórum de 3/5 em ambas as casas do Congresso) do que o exigido para a edição de leis comuns.",
+            "Outorgada, visto que foi imposta de forma unilateral pelo detentor do poder político na época.",
+            "Costumeira, dado que suas bases residem nos costumes locais."
+        ],
+        correta: 1,
+        comentario: "Sua resposta escrita na prova garantiu nota 1,5! Como destacado, a CF/88 é classificada como Rígida porque sua modificação demanda um processo burocrático e rigoroso (art. 60 da CF): votação em dois turnos em cada casa do Congresso e aprovação por quórum qualificado de 3/5 dos membros."
+    }
+];
+
+const form = document.getElementById("quiz");
+
+questoes.forEach((q, i) => {
+    let html = `<div class="questao"><h3>${q.pergunta}</h3>`;
+    
+    q.opcoes.forEach((op, j) => {
+        html += `
+        <label class="opcao-label">
+            <input type="radio" name="q${i}" value="${j}">
+            ${String.fromCharCode(65 + j)}) ${op}
+        </label>`;
+    });
+    
+    html += `<div id="c${i}" class="comentario"></div></div>`;
+    form.innerHTML += html;
+});
+
+document.getElementById("btnCorrigir").addEventListener("click", corrigir);
+document.getElementById("btnRefazer").addEventListener("click", () => location.reload());
+
+function corrigir() {
+    let acertos = 0;
+    let erros = 0;
+
+    questoes.forEach((q, i) => {
+        const resposta = document.querySelector(`input[name="q${i}"]:checked`);
+        const divComentario = document.getElementById(`c${i}`);
+        divComentario.style.display = "block";
+
+        if (resposta && Number(resposta.value) === q.correta) {
+            acertos++;
+            divComentario.innerHTML = `<span class="correta">✔ Correto!</span><br>${q.comentario}`;
+        } else {
+            erros++;
+            const letraCorreta = String.fromCharCode(65 + q.correta);
+            divComentario.innerHTML = `<span class="errada">✘ Incorreto.</span><br>Gabarito: <b>${letraCorreta}</b><br>${q.comentario}`;
+        }
+    });
+
+    const nota = ((acertos / questoes.length) * 100).toFixed(1);
+    const res = document.getElementById("resultado");
+    
+    res.style.display = "block";
+    res.innerHTML = `
+        <h2>Resumo do Simulado</h2>
+        <p><b>Acertos:</b> <span class="correta">${acertos} de ${questoes.length}</span></p>
+        <p><b>Desempenho:</b> <b>${nota}%</b></p>
+        <p style="font-size: 14px; color: #aaa; margin-top: 10px;">Foco total nas pegadinhas do examinador e nas anotações do professor para segunda-feira!</p>
+    `;
+
+    res.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
